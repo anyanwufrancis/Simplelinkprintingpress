@@ -1,5 +1,3 @@
-
-
 type message = {
 
     content: string,
