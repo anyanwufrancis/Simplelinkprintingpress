@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import { Box } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { NetworkLineLoader } from "./Components/Service/NetworkLoader";
+import { motion } from "framer-motion"
 // import Home from "./Components/Home";
 // import About from "./Components/about/About";
 import Service from "./Components/Service"
@@ -9,36 +11,38 @@ import Service from "./Components/Service"
 
 
 function AppContent() {
+  const MotionBox = motion(Box);
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
   const [showMessage, setShowMessage] = useState(false);
 
-  useEffect(() => {
-    const handleOffline = () => {
-      setIsOnline(false);
-      setShowMessage(true);
-      setTimeout(() => setShowMessage(false), 5000);
-    };
+useEffect(() => {
+  const handleOffline = () => {
+    setIsOnline(false);
+    setShowMessage(true);
+  };
 
-    const handleOnline = () => {
-      setIsOnline(true);
-      setShowMessage(true);
-      setTimeout(() => setShowMessage(false), 5000);
-    };
+  const handleOnline = () => {
+    setIsOnline(true);
+    setShowMessage(true);
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 3000);
+  };
 
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
+  window.addEventListener("online", handleOnline);
+  window.addEventListener("offline", handleOffline);
 
-    return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
-    };
-  }, []);
+  return () => {
+    window.removeEventListener("online", handleOnline);
+  };
+}, []);
+
 
   return (
     <>
       {showMessage && (
-        <Box
-          fontSize={"1.2pc"}
+        <MotionBox
+          fontSize={"1pc"}
           fontWeight={"500"}
           fontFamily={"Tahoma"}
           pos="fixed"
@@ -50,9 +54,27 @@ function AppContent() {
           px="4"
           py="2"
           borderRadius="md"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
         >
-          {isOnline ? "✅ You're back online" : "❌ You're currently offline"}
-        </Box>
+          <Box
+            pos="fixed"
+            top="20px"
+            right="8px"
+            bg={isOnline ? "green" : "red"}
+            color="white"
+            px="4"
+            py="3"
+            borderRadius="md"
+          >
+            {isOnline
+              ? "🌐 Back online — You're now connected"
+              : "⛔ You're offline — waiting for connection"}
+
+            <NetworkLineLoader isOnline={isOnline} />
+          </Box>
+
+        </MotionBox>
       )}
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
