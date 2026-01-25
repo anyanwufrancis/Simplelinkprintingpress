@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Box } from "@chakra-ui/react";
+import { Box, Text, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { NetworkLineLoader } from "./Components/Service/NetworkLoader";
 import { motion } from "framer-motion"
@@ -15,27 +15,31 @@ function AppContent() {
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
   const [showMessage, setShowMessage] = useState(false);
 
-useEffect(() => {
-  const handleOffline = () => {
-    setIsOnline(false);
-    setShowMessage(true);
-  };
+  const handleRetry = () => {
+    location.reload()
+  }
 
-  const handleOnline = () => {
-    setIsOnline(true);
-    setShowMessage(true);
-    setTimeout(() => {
-      setShowMessage(false);
-    }, 3000);
-  };
+  useEffect(() => {
+    const handleOffline = () => {
+      setIsOnline(false);
+      setShowMessage(true);
+    };
 
-  window.addEventListener("online", handleOnline);
-  window.addEventListener("offline", handleOffline);
+    const handleOnline = () => {
+      setIsOnline(true);
+      setShowMessage(true);
+      setTimeout(() => {
+        setShowMessage(false);
+      }, 3000);
+    };
 
-  return () => {
-    window.removeEventListener("online", handleOnline);
-  };
-}, []);
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+    };
+  }, []);
 
 
   return (
@@ -76,12 +80,27 @@ useEffect(() => {
 
         </MotionBox>
       )}
-      <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
-        {/* <Route path="/about" element={<About />} /> */}
-        <Route path="/Service" element={<Service />} />
-        {/* <Route path="/contact" element={<Contact />} /> */}
-      </Routes>
+
+      {!isOnline && (
+        <Box color={"white"} fontFamily={"Tahoma"} position="fixed" bgColor={"gray.600"} display={"flex"} flexDir={"column"} alignItems={"center"} justifyContent={"center"} bottom="0" width="100%" h={"100%"} zIndex="999">
+          <Text fontSize={"2pc"} fontWeight={"700"}>Offline</Text>
+          <Text fontSize={"19px"}>Please check your internet connection</Text>
+          <Button
+            mt="25px"
+            bg="rgba(255, 255, 255, 0.05)"
+            onClick={handleRetry}
+          >
+            Retry
+          </Button>
+        </Box>
+      )}
+      {isOnline && (
+        <Routes>
+          {/* <Route path="/" element={<Home />} /> */}
+          {/* <Route path="/about" element={<About />} /> */}
+          <Route path="/Service" element={<Service />} />
+          {/* <Route path="/contact" element={<Contact />} /> */}
+        </Routes>)}
     </>
   );
 }
