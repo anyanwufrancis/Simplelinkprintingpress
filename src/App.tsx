@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Box, Text, Button } from "@chakra-ui/react";
+import { MdReplay } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { NetworkLineLoader } from "./Components/Service/NetworkLoader";
 import { motion } from "framer-motion"
@@ -86,10 +87,13 @@ function AppContent() {
           <Text fontSize={"2pc"} fontWeight={"700"}>Offline</Text>
           <Text fontSize={"19px"}>Please check your internet connection</Text>
           <Button
+            color={"white"}
+            gap={"3px"}
             mt="25px"
             bg="rgba(255, 255, 255, 0.05)"
             onClick={handleRetry}
           >
+            <MdReplay fontSize={"1.3pc"} />
             Retry
           </Button>
         </Box>
