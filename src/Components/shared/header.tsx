@@ -4,9 +4,7 @@ import {
   Box,
   Flex,
   Text,
-  Input,
   IconButton,
-  Collapse,
   Drawer,
   DrawerBody,
   DrawerHeader,
@@ -16,13 +14,14 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import { FaSearch, FaBars } from "react-icons/fa"; // Added FaBars
+import { FaSearch, FaBars } from "react-icons/fa";
 import { IoMdContact } from "react-icons/io";
-import { useState } from "react";
 
-const Header = () => {
-  const [showSearch, setShowSearch] = useState(false);
-  // useDisclosure manages the state for the mobile menu drawer
+type HeaderProps = {
+  onOpenSearch: () => void;
+};
+
+const Header = ({ onOpenSearch }: HeaderProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const navLinks = ["Home", "About", "Service", "Contact"];
@@ -40,7 +39,6 @@ const Header = () => {
         boxShadow="sm"
       >
         <Flex align="center" justify="space-between">
-          {/* Mobile Menu Icon (Visible only on small screens) */}
           <IconButton
             display={{ base: "flex", md: "none" }}
             onClick={onOpen}
@@ -51,30 +49,33 @@ const Header = () => {
             _hover={{ bg: "whiteAlpha.200" }}
           />
 
-          {/* Logo */}
           <Text color="white" fontSize="xl" fontWeight="bold">
             SimpleLinkPress
           </Text>
 
-          {/* Desktop Nav Links (Hidden on mobile) */}
           <Flex gap={8} align="center" display={{ base: "none", md: "flex" }}>
             {navLinks.map((link) => (
-              <Text key={link} color="white" cursor="pointer" _hover={{ color: "pink.400" }}>
+              <Text
+                key={link}
+                color="white"
+                cursor="pointer"
+                _hover={{ color: "pink.400" }}
+              >
                 {link}
               </Text>
             ))}
           </Flex>
 
-          {/* Icons */}
           <Flex align="center" gap={3}>
+            {/* 🔥 GLOBAL SEARCH BUTTON */}
             <IconButton
-              aria-label="Search"
+              aria-label="Global Search"
               icon={<FaSearch />}
               variant="ghost"
               color="white"
               fontSize="18px"
               _hover={{ bg: "whiteAlpha.200" }}
-              onClick={() => setShowSearch((prev) => !prev)}
+              onClick={onOpenSearch}
             />
 
             <IconButton
@@ -89,7 +90,7 @@ const Header = () => {
         </Flex>
       </Box>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Menu */}
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent bg="#1a0047" color="white">
@@ -100,7 +101,13 @@ const Header = () => {
           <DrawerBody>
             <VStack align="start" spacing={6} mt={4}>
               {navLinks.map((link) => (
-                <Text key={link} fontSize="lg" onClick={onClose} cursor="pointer" w="100%">
+                <Text
+                  key={link}
+                  fontSize="lg"
+                  onClick={onClose}
+                  cursor="pointer"
+                  w="100%"
+                >
                   {link}
                 </Text>
               ))}
@@ -108,31 +115,6 @@ const Header = () => {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-
-      {/* Search Bar Dropdown */}
-      <Collapse in={showSearch} animateOpacity>
-        <Box
-          position="fixed"
-          top="70px"
-          right={{ base: 4, md: 10 }}
-          w="auto"
-          maxW={{ base: "90%", md: "400px" }}
-          bg="white"
-          px={4}
-          py={4}
-          zIndex={999}
-          boxShadow="md"
-          borderRadius="lg"
-        >
-          <Input
-            placeholder="Search products, services..."
-            size="lg"
-            autoFocus
-            borderRadius="full"
-            focusBorderColor="pink.400"
-          />
-        </Box>
-      </Collapse>
     </>
   );
 };
