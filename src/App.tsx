@@ -3,35 +3,37 @@ import { Box, Text, Button } from "@chakra-ui/react";
 import { MdReplay } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { NetworkLineLoader } from "./Components/Service/NetworkLoader";
-import { motion } from "framer-motion"
-// import Home from "./Components/Home";
-// import About from "./Components/about/About";
-import Service from "./Components/Service"
-// import Contact from "./Components/Contact";
-// import { Work } from "./Components/work";
-
+import { motion } from "framer-motion";
+import Service from "./Components/Service";
 
 function AppContent() {
   const MotionBox = motion(Box);
+  const MotionIcon = motion(MdReplay);
+
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
   const [showMessage, setShowMessage] = useState(false);
+  const [isRetrying, setIsRetrying] = useState(false);
 
   const handleRetry = () => {
-    location.reload()
-  }
+    setIsRetrying(true);
+
+    setTimeout(() => {
+      location.reload();
+    }, 800); // allow spin before reload
+  };
 
   useEffect(() => {
     const handleOffline = () => {
       setIsOnline(false);
       setShowMessage(true);
+      setIsRetrying(false);
     };
 
     const handleOnline = () => {
       setIsOnline(true);
       setShowMessage(true);
-      setTimeout(() => {
-        setShowMessage(false);
-      }, 3000);
+      setTimeout(() => setShowMessage(false), 3000);
+      setIsRetrying(false);
     };
 
     window.addEventListener("online", handleOnline);
@@ -39,72 +41,87 @@ function AppContent() {
 
     return () => {
       window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
     };
   }, []);
-
 
   return (
     <>
       {showMessage && (
         <MotionBox
-          fontSize={"1pc"}
-          fontWeight={"500"}
-          fontFamily={"Tahoma"}
           pos="fixed"
           top="20px"
           right="8px"
           zIndex="1000"
-          color="white"
-          bgColor={isOnline ? "green" : "red"}
-          px="4"
-          py="2"
-          borderRadius="md"
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
         >
           <Box
-            pos="fixed"
-            top="20px"
-            right="8px"
             bg={isOnline ? "green" : "red"}
             color="white"
             px="4"
             py="3"
             borderRadius="md"
+            fontFamily="Tahoma"
+            fontWeight="500"
           >
             {isOnline
               ? "🌐 Back online — You're now connected"
               : "⛔ You're offline — waiting for connection"}
-
             <NetworkLineLoader isOnline={isOnline} />
           </Box>
-
         </MotionBox>
       )}
 
       {!isOnline && (
-        <Box color={"white"} fontFamily={"Tahoma"} position="fixed" bgColor={"gray.600"} display={"flex"} flexDir={"column"} alignItems={"center"} justifyContent={"center"} bottom="0" width="100%" h={"100%"} zIndex="999">
-          <Text fontSize={"2pc"} fontWeight={"700"}>Offline</Text>
-          <Text fontSize={"19px"}>Please check your internet connection</Text>
+        <Box
+          position="fixed"
+          inset="0"
+          bg="gray.600"
+          color="white"
+          display="flex"
+          flexDir="column"
+          alignItems="center"
+          justifyContent="center"
+          fontFamily="Tahoma"
+          zIndex="999"
+        >
+          <Text fontSize="2pc" fontWeight="700">
+            Offline
+          </Text>
+          <Text fontSize="19px">
+            Please check your internet connection
+          </Text>
+
           <Button
-            color={"white"}
-            gap={"3px"}
             mt="25px"
-            bg="rgba(255, 255, 255, 0.05)"
+            gap="6px"
+            bg="rgba(255,255,255,0.05)"
+            color="white"
+            _hover={{}}
+            _active={{ bg: "rgba(255,255,255,0.05)" }}
             onClick={handleRetry}
+            isDisabled={isRetrying}
           >
-            <MdReplay fontSize={"1.3pc"} />
-            Retry
+            <MotionIcon
+              fontSize="1.3pc"
+              animate={isRetrying ? { rotate: 360 } : { rotate: 0 }}
+              transition={
+                isRetrying
+                  ? { repeat: Infinity, duration: 0.8, ease: "linear" }
+                  : {}
+              }
+            />
+            {isRetrying ? "Retrying..." : "Retry"}
           </Button>
         </Box>
       )}
+
       {isOnline && (
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
-          {/* <Route path="/about" element={<About />} /> */}
           <Route path="/Service" element={<Service />} />
-          {/* <Route path="/contact" element={<Contact />} /> */}
-        </Routes>)}
+        </Routes>
+      )}
     </>
   );
 }
