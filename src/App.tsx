@@ -1,18 +1,15 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "./Components/Home";
+import { Flex, Image } from "@chakra-ui/react";
+import { Routes, Route,  } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import About from "./Components/about/About";
-import Contact from "./Components/Contact";
 
 function AppContent() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        {/* <Route path="/service" element={<Service />} /> */}
-        <Route path="/Contact" element={<Contact />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<About />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
   );
 }
 
