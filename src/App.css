@@ -1,0 +1,61 @@
+#banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/purple-abstract-5120x5120-24770.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #1d0330;
+    background-position: center;
+
+}
+
+.hexagon {
+    clip-path: polygon(10px 0, calc(100% - 10px), 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+}
+
+
+.heading .sub {
+    align-items: flex-end;
+    background-color: #150050;
+    clip-path: polygon(5% 0, 95% 0, 100% 20%, 100% 80%, 95% 100%, 5% 100%, 0 80%, 0 20%);
+    color: white;
+    display: inline-block;
+    display: flex;
+    font-size: 1.8rem;
+    gap: 1rem;
+    letter-spacing: .2rem;
+    line-height: 1;
+    margin-bottom: .5rem;
+    padding: 1rem 2rem;
+}
+
+.sideheading {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    -ms-grid-row-align: flex-start;
+    align-items: flex-start;
+}
+
+.heading {
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+}
+
+
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.contact .contact-info .info-item {
+    align-items: flex-start;
+    background-color: #fb2576;
+    border-radius: 0.5rem;
+    display: flex;
+    flex: 1 1 25rem;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+}
+
