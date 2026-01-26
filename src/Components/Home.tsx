@@ -418,10 +418,10 @@ const Home = () => {
                 bg="blackAlpha.600"
                 opacity={0}
                 _hover={{ opacity: 1 }}
-                transition="opacity 0.3s ease"
+                // transition="opacity 0.3s ease"
                 display="flex"
                 flexDirection="column"
-                justify="space-between"
+                // justify="space-between"
               >
                 <Flex justify="flex-end" p={3}>
                   <Icon
@@ -535,7 +535,7 @@ const Home = () => {
       { img: "Umbrella.jpg", title: "Customise Unbrella" },
       { img: "appron.jpg", title: "Custom Appron" },
       { img: "flyer.jpg", title: "Custom Flyer" },
-      { img: "Complementary-Card1.jpg", title: "Customise Cmplementary Card" },
+      { img: "Complementary-Card1.jpg", title: "Customise Cmplementary ard" },
     ].map((item, idx) => (
       <Box key={idx} textAlign="center">
         <Box
