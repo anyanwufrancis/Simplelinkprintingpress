@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Box, Container, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Icon, Flex, Image, Button, Heading, Grid, SimpleGrid } from '@chakra-ui/react';
 import { FaHome, FaChevronRight, FaClipboardList, FaUsers, FaAward, FaUsersCog } from 'react-icons/fa';
 import { MdPrint } from 'react-icons/md';
+import Header from '../shared/header';
+import Footer from '../shared/footer';
 
 const About: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -77,16 +79,16 @@ const About: React.FC = () => {
 
   return (
     <Box position="relative" w="100%" overflow="hidden">
-      
+      <Header onOpenSearch={function (): void {
+        throw new Error('Function not implemented.');
+      } } />
       <Box
         position="relative"
         h={{ base: "250px", md: "300px" }}
         bg="gray.800"
         overflow="hidden"
       >
-       
         <Box position="absolute" top="0" left="0" w="100%" h="100%">
-          
           <Box
             position="absolute"
             top="-20%"
@@ -97,7 +99,7 @@ const About: React.FC = () => {
             transform="rotate(15deg)"
             opacity={0.9}
           />
-          
+
           {/* Maroon/burgundy diagonal shape */}
           <Box
             position="absolute"
@@ -109,7 +111,7 @@ const About: React.FC = () => {
             transform="rotate(25deg)"
             opacity={0.8}
           />
-          
+
           {/* Brown diagonal shape */}
           <Box
             position="absolute"
@@ -121,7 +123,7 @@ const About: React.FC = () => {
             transform="rotate(-20deg)"
             opacity={0.85}
           />
-          
+
           {/* Gold/tan accent shape */}
           <Box
             position="absolute"
@@ -133,7 +135,7 @@ const About: React.FC = () => {
             transform="rotate(-15deg)"
             opacity={0.7}
           />
-          
+
           {/* Dark overlay shapes */}
           <Box
             position="absolute"
@@ -186,7 +188,7 @@ const About: React.FC = () => {
                 alignItems="center"
                 color="white"
                 fontSize="lg"
-                _hover={{ textDecoration: 'none', opacity: 0.8 }}
+                _hover={{ textDecoration: "none", opacity: 0.8 }}
               >
                 <Icon as={FaHome} boxSize={8} mr={2} />
               </BreadcrumbLink>
@@ -196,7 +198,7 @@ const About: React.FC = () => {
                 color="white"
                 fontSize="2xl"
                 fontWeight="semibold"
-                _hover={{ textDecoration: 'none' }}
+                _hover={{ textDecoration: "none" }}
               >
                 About Us
               </BreadcrumbLink>
@@ -208,7 +210,6 @@ const About: React.FC = () => {
       {/* Know About Us Section */}
       <Container maxW="container.xl" py={{ base: 12, md: 10 }}>
         <Flex direction="column" align="center" gap={2}>
-          
           <Flex
             align="center"
             gap={3}
@@ -242,7 +243,12 @@ const About: React.FC = () => {
       </Container>
 
       {/* We Take Care Of Print Section */}
-      <Box position="relative" bg="gray.100" py={{ base: 8, md: 12 }} overflow="hidden">
+      <Box
+        position="relative"
+        bg="gray.100"
+        py={{ base: 8, md: 12 }}
+        overflow="hidden"
+      >
         <Container maxW="container.xl" px={{ base: 4, md: 8 }}>
           <Flex
             direction={{ base: "column", md: "row" }}
@@ -297,12 +303,7 @@ const About: React.FC = () => {
                   We Take Care Of Print, You Take Care Of Business
                 </Heading>
 
-                <Box
-                  w="300px"
-                  h="2px"
-                  bg="white"
-                  mb={8}
-                />
+                <Box w="300px" h="2px" bg="white" mb={8} />
 
                 <Text
                   fontSize={{ base: "md", md: "lg" }}
@@ -310,7 +311,11 @@ const About: React.FC = () => {
                   mb={10}
                   lineHeight="1.8"
                 >
-                  We Take Care Of Print, You Take Care Of Business. Our Team Delivers High-Quality Printing Solutions So You Can Focus On What You Do Best. We Take Care Of Print, You Take Care Of Business. Our Team Delivers High-Quality Printing Solutions So You Can Focus On What You Do Best.
+                  We Take Care Of Print, You Take Care Of Business. Our Team
+                  Delivers High-Quality Printing Solutions So You Can Focus On
+                  What You Do Best. We Take Care Of Print, You Take Care Of
+                  Business. Our Team Delivers High-Quality Printing Solutions So
+                  You Can Focus On What You Do Best.
                 </Text>
 
                 <Button
@@ -493,7 +498,7 @@ const About: React.FC = () => {
       {/* Statistics Section */}
       <Box
         position="relative"
-        bgImage="url('/public/Gemini_Generated_Image_a83761a83761a837.png')" 
+        bgImage="url('/public/Gemini_Generated_Image_a83761a83761a837.png')"
         bgSize="cover"
         bgPosition="center"
         bgAttachment="fixed"
@@ -558,7 +563,7 @@ const About: React.FC = () => {
         </Container>
       </Box>
 
-{/* Our History Section */}
+      {/* Our History Section */}
       <Box bg="white" py={{ base: 12, md: 16 }}>
         <Container maxW="container.xl">
           <Flex direction="column" align="center" mb={12} gap={3}>
@@ -617,7 +622,14 @@ const About: React.FC = () => {
                 lineHeight="1.8"
                 mb={4}
               >
-                Simplelink printing press is an emergent organization with the purpose and determination to address the gaps in corporation branding and printing solutions in the country in the wake of emerging technology. It is founded as a division of simplelink association Ltd, which was registered as a limited liability company on 17th October, 2009. our existence as a company in Nigeria has made us to succeed in bridging the gaps in the use of innovative technology to provide printing solutions. 
+                Simplelink printing press is an emergent organization with the
+                purpose and determination to address the gaps in corporation
+                branding and printing solutions in the country in the wake of
+                emerging technology. It is founded as a division of simplelink
+                association Ltd, which was registered as a limited liability
+                company on 17th October, 2009. our existence as a company in
+                Nigeria has made us to succeed in bridging the gaps in the use
+                of innovative technology to provide printing solutions.
               </Text>
               <Text
                 fontSize={{ base: "md", md: "lg" }}
@@ -625,9 +637,10 @@ const About: React.FC = () => {
                 lineHeight="1.8"
                 mb={4}
               >
-                This has subsequently helped to achieve a reputation for the organization which presently is known for quality service and consistent concern for customer satisfaction. 
+                This has subsequently helped to achieve a reputation for the
+                organization which presently is known for quality service and
+                consistent concern for customer satisfaction.
               </Text>
-             
             </Box>
           </Flex>
         </Container>
@@ -680,8 +693,15 @@ const About: React.FC = () => {
                 lineHeight="1.8"
                 mb={4}
               >
-                Simplelink printing press was registered in Nigeria with the aim of providing high quality corporate branding and printing services in all areas of concern involving printing of fliers, bill board/banners, calenders, diaries, conference bags/conference materials, folder/files/table blotters, season cards, cooperates gifts/medals/trophies, books/jottera/journals/magazines/newsletters, posters/handbills etc.
-                We have track record of excellence in delivery proven solutions in all of these areas.
+                Simplelink printing press was registered in Nigeria with the aim
+                of providing high quality corporate branding and printing
+                services in all areas of concern involving printing of fliers,
+                bill board/banners, calenders, diaries, conference
+                bags/conference materials, folder/files/table blotters, season
+                cards, cooperates gifts/medals/trophies,
+                books/jottera/journals/magazines/newsletters, posters/handbills
+                etc. We have track record of excellence in delivery proven
+                solutions in all of these areas.
               </Text>
               <Text
                 fontSize={{ base: "md", md: "lg" }}
@@ -689,7 +709,8 @@ const About: React.FC = () => {
                 lineHeight="1.8"
                 mb={4}
               >
-                In simplelink printing press, we exceed customer's expectation and give unsolicited extras.
+                In simplelink printing press, we exceed customer's expectation
+                and give unsolicited extras.
               </Text>
             </Box>
 
@@ -730,10 +751,16 @@ const About: React.FC = () => {
                 right: "-50%",
                 width: "200%",
                 height: "200%",
-                background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)",
+                background:
+                  "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)",
               }}
             >
-              <Flex direction="column" align="center" position="relative" zIndex={1}>
+              <Flex
+                direction="column"
+                align="center"
+                position="relative"
+                zIndex={1}
+              >
                 <Icon as={FaAward} boxSize={16} color="white" mb={6} />
                 <Heading
                   as="h3"
@@ -751,7 +778,8 @@ const About: React.FC = () => {
                   lineHeight="1.8"
                   textAlign="center"
                 >
-                  Our Vision is to be the most formidable and recognized company known for high quality and printing solutions in Nigeria.
+                  Our Vision is to be the most formidable and recognized company
+                  known for high quality and printing solutions in Nigeria.
                 </Text>
               </Flex>
             </Box>
@@ -771,10 +799,16 @@ const About: React.FC = () => {
                 right: "-50%",
                 width: "200%",
                 height: "200%",
-                background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)",
+                background:
+                  "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)",
               }}
             >
-              <Flex direction="column" align="center" position="relative" zIndex={1}>
+              <Flex
+                direction="column"
+                align="center"
+                position="relative"
+                zIndex={1}
+              >
                 <Icon as={FaUsersCog} boxSize={16} color="white" mb={6} />
                 <Heading
                   as="h3"
@@ -792,7 +826,11 @@ const About: React.FC = () => {
                   lineHeight="1.8"
                   textAlign="center"
                 >
-                  Our mission is to provide branding and printing services to our clients and customers at an affordable price, while maximizing our potentials and using the best hands to achieve value and satisfaction for both internal and external stakeholders in our operation.
+                  Our mission is to provide branding and printing services to
+                  our clients and customers at an affordable price, while
+                  maximizing our potentials and using the best hands to achieve
+                  value and satisfaction for both internal and external
+                  stakeholders in our operation.
                 </Text>
               </Flex>
             </Box>
@@ -801,11 +839,7 @@ const About: React.FC = () => {
       </Box>
 
       {/* Core Values Section */}
-      <Box
-        bg="gray.50"
-        py={{ base: 12, md: 16 }}
-        position="relative"
-      >
+      <Box bg="gray.50" py={{ base: 12, md: 16 }} position="relative">
         <Container maxW="container.xl">
           <Flex direction="column" align="center" mb={12} gap={3}>
             <Flex
@@ -845,12 +879,18 @@ const About: React.FC = () => {
               textAlign="center"
               maxW="800px"
             >
-              We exist to faster mutually beneficial business relationships. In this regard, we adhere strickly to certain cherish values to define our operation in the markrt place. our core values include:
+              We exist to faster mutually beneficial business relationships. In
+              this regard, we adhere strickly to certain cherish values to
+              define our operation in the markrt place. our core values include:
             </Text>
           </Flex>
 
           <Grid
-            templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
+            templateColumns={{
+              base: "1fr",
+              sm: "repeat(2, 1fr)",
+              lg: "repeat(3, 1fr)",
+            }}
             gap={8}
           >
             {/* Value 1: Quality */}
@@ -889,7 +929,9 @@ const About: React.FC = () => {
                   Excellence
                 </Heading>
                 <Text fontSize="md" color="gray.600" lineHeight="1.8">
-                  We never compromise on quality. Every project receives our meticulous attention to detail, ensuring results that exceed expectations and stand the test of time.
+                  We never compromise on quality. Every project receives our
+                  meticulous attention to detail, ensuring results that exceed
+                  expectations and stand the test of time.
                 </Text>
               </Flex>
             </Box>
@@ -930,7 +972,9 @@ const About: React.FC = () => {
                   Customer Service
                 </Heading>
                 <Text fontSize="md" color="gray.600" lineHeight="1.8">
-                  Your success is our priority. We listen, understand, and deliver solutions tailored to your unique needs, building lasting relationships based on trust.
+                  Your success is our priority. We listen, understand, and
+                  deliver solutions tailored to your unique needs, building
+                  lasting relationships based on trust.
                 </Text>
               </Flex>
             </Box>
@@ -971,7 +1015,9 @@ const About: React.FC = () => {
                   Impeccability
                 </Heading>
                 <Text fontSize="md" color="gray.600" lineHeight="1.8">
-                  We hold ourselves to the highest standards of professionalism and excellence. Every interaction, every deliverable reflects our commitment to doing things right the first time.
+                  We hold ourselves to the highest standards of professionalism
+                  and excellence. Every interaction, every deliverable reflects
+                  our commitment to doing things right the first time.
                 </Text>
               </Flex>
             </Box>
@@ -1012,7 +1058,9 @@ const About: React.FC = () => {
                   Integrity
                 </Heading>
                 <Text fontSize="md" color="gray.600" lineHeight="1.8">
-                  Honesty and transparency guide everything we do. We build trust through ethical practices, fair pricing, and keeping our promises every single time.
+                  Honesty and transparency guide everything we do. We build
+                  trust through ethical practices, fair pricing, and keeping our
+                  promises every single time.
                 </Text>
               </Flex>
             </Box>
@@ -1053,7 +1101,9 @@ const About: React.FC = () => {
                   Sustainability
                 </Heading>
                 <Text fontSize="md" color="gray.600" lineHeight="1.8">
-                  We care about our planet. From eco-friendly materials to responsible waste management, we're committed to minimizing our environmental impact.
+                  We care about our planet. From eco-friendly materials to
+                  responsible waste management, we're committed to minimizing
+                  our environmental impact.
                 </Text>
               </Flex>
             </Box>
@@ -1094,14 +1144,16 @@ const About: React.FC = () => {
                   Teamwork
                 </Heading>
                 <Text fontSize="md" color="gray.600" lineHeight="1.8">
-                  Collaboration fuels our success. We work together as one team, combining our diverse skills and expertise to deliver exceptional results for you.
+                  Collaboration fuels our success. We work together as one team,
+                  combining our diverse skills and expertise to deliver
+                  exceptional results for you.
                 </Text>
               </Flex>
             </Box>
           </Grid>
         </Container>
       </Box>
-
+      <Footer />
     </Box>
   );
 };

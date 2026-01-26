@@ -5,6 +5,8 @@ import emailjs from '@emailjs/browser';
 import { FaEnvelope } from "react-icons/fa6";
 import 'leaflet/dist/leaflet.css';
 import { useRef, useState } from "react";
+import Header from "./shared/header";
+import Footer from "./shared/footer";
 
 export default function Contact() {
     const form = useRef<HTMLFormElement>(null);
@@ -59,7 +61,10 @@ export default function Contact() {
     ];
 
     return (
-        <Box pb={10}>
+        <Box pb={0}>
+            <Header onOpenSearch={function (): void {
+                throw new Error("Function not implemented.");
+            } }/>
             <Flex id="banner" justifyContent="center" alignItems="center" h="20rem" bg="gray.700">
                 <Text fontSize="42px" color="white" fontWeight={600}>Contact</Text>
             </Flex>
@@ -71,13 +76,14 @@ export default function Contact() {
             </Flex>
 
             <Box mt={10}>
-                <MapContainer center={position} zoom={15} style={{ height: "400px", width: "100%", zIndex: 0 }}>
+                {/* @ts-expect-error react-leaflet types */}
+                <MapContainer center={position} zoom={15} style={{ height: "400px", width: "100%" }}>
                     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                     <Marker position={position}><Popup>We are Located Here</Popup></Marker>
                 </MapContainer>
             </Box>
 
-            <Box p={8}>
+            <Box p={8} id="form">
                 <Flex direction={{ base: 'column-reverse', lg: 'row' }} gap={8} rounded={6} bg={'#fb2576'} overflow="hidden">
                     <Box flex="1">
                         <Image src="/Contact.jpg" alt="Contact" w="100%" h="100%" objectFit="cover" />
@@ -120,6 +126,7 @@ export default function Contact() {
                     ))}
                 </SimpleGrid>
             </Flex>
+            <Footer />
         </Box>
     );
 }
