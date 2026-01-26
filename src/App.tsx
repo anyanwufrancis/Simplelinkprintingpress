@@ -105,7 +105,7 @@ function AppContent() {
           >
             <MotionIcon
               fontSize="1.3pc"
-              animate={isRetrying ? { rotate: 360 } : { rotate: 0 }}
+              animate={isRetrying ? { rotate: -360 } : { rotate: 0 }}
               transition={
                 isRetrying
                   ? { repeat: Infinity, duration: 0.8, ease: "linear" }
