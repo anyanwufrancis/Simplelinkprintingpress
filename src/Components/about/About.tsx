@@ -1,987 +1,1108 @@
-"use client";
-import {
-  Box,
-  Text,
-  Flex,
-  Heading,
-  VStack,
-  List,
-  ListItem,
-  ListIcon,
-  Grid,
-  Image,
-  // Card,
-  HStack,
-  Icon,
-  Button,
-  Link,
-  SimpleGrid,
-} from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import { IoEllipseSharp, IoRocketSharp } from "react-icons/io5";
-import { MdCheckCircle, MdOutlineEmail } from "react-icons/md";
-import { RiCheckboxBlankCircleFill } from "react-icons/ri";
-import { BsFillStarFill } from "react-icons/bs";
-import { FaPhone } from "react-icons/fa6";
-import { FiX } from "react-icons/fi";
-import { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import { Box, Container, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Icon, Flex, Image, Button, Heading, Grid, SimpleGrid } from '@chakra-ui/react';
+import { FaHome, FaChevronRight, FaClipboardList, FaUsers, FaAward, FaUsersCog } from 'react-icons/fa';
+import { MdPrint } from 'react-icons/md';
 
-const About = () => {
-  const MotionBox = motion(Box);
-  const MotionIcon = motion(IoEllipseSharp);
- const [isOpen, setIsOpen] = useState(false);
+const About: React.FC = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-   // Variants for container and items for staggered animation
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3,
+ 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === 0 ? 1 : 0));
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const servicesSlide1 = [
+    {
+      image: '/public/Gemini_Generated_Image_bgsbqwbgsbqwbgsb.png',
+      title: 'Banner Printing',
+      description: 'Durable And Eye-Catching Banners For Promotions, Events, And Branding—Designed To Make A Bold Statement Indoors Or Outdoors.',
     },
-  },
-};
+    {
+      image: '/public/Flyer_1_1000w.avif',
+      title: 'Flyer Printing',
+      description: 'High-Quality Flyer Printing For Promotions, Events, And Marketing Campaigns—Crafted To Grab Attention And Drive Results.',
+    },
+    {
+      image: '/public/T-Shirts.jpg',
+      title: 'Shirt Printing',
+      description: 'Custom Shirt Printing Services For Events, Brands, And Teams—Delivering Comfort, Durability, And Standout Designs.',
+    },
+  ];
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
+  const servicesSlide2 = [
+    {
+      image: '/public/business-card.webp',
+      title: 'Business Card Printing',
+      description: 'Professional Business Cards That Make Lasting First Impressions—Premium Quality With Custom Designs.',
+    },
+    {
+      image: '/public/poster.jpg',
+      title: 'Poster Printing',
+      description: 'Vibrant Poster Printing For Events, Promotions, And Advertising—High-Resolution Prints That Capture Attention.',
+    },
+    {
+      image: '/public/sticker.webp',
+      title: 'Sticker Printing',
+      description: 'Custom Sticker Printing For Branding, Promotions, And Personal Use—Durable, Weather-Resistant, And Eye-Catching.',
+    },
+  ];
+
+  const stats = [
+    {
+      icon: FaClipboardList,
+      count: '1,000+',
+      label: 'Projects Done',
+    },
+    {
+      icon: FaUsers,
+      count: '1,000+',
+      label: 'Satisfied Clients',
+    },
+    {
+      icon: FaAward,
+      count: '20+',
+      label: 'Awards Won',
+    },
+    {
+      icon: FaUsersCog,
+      count: '50+',
+      label: 'Expert Team',
+    },
+  ];
+
+
   return (
-    <>
-      {/* ABOUT HEADER WITH ROCKET AND FLOATING ICONS */}
-      {/* Header Section */}
-      {/* Header Navigation */}
-      <MotionBox
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <Box overflowX={"hidden"}>
-
-    
-      <Flex
-        alignItems="center"
-        justifyContent="space-between"
-        p={4}
-        bg="white"
-        boxShadow="md"
-        borderRadius="md"
-      >
-        {/* Logo */}
-        <Flex align="center" gap={2} w="9em" color="green.600">
-          <Image src="ahiaoma_text_logo.png" alt="Logo" />
-        </Flex>
-
-        <Flex gap={6} display={{ base: "none", md: "flex" }}>
-          {/* Features Link */}
-          <Link href="/">
-            <Text
-              _hover={{ color: "green.500" }}
-              fontWeight="semibold"
-              color="gray.700"
-              cursor="pointer"
-            >
-              Home
-            </Text>
-          </Link>
-
-          {/* About Us Link */}
-          <Link href="/about">
-            <Text
-              _hover={{ color: "green.500" }}
-              fontWeight="semibold"
-              color="gray.700"
-              cursor="pointer"
-            >
-              Features
-            </Text>
-          </Link>
-
-          {/* Contact Us Link */}
-          <Link href="/contact">
-            <Text
-              _hover={{ color: "green.500" }}
-              fontWeight="semibold"
-              color="gray.700"
-              cursor="pointer"
-            >
-              Contact
-            </Text>
-          </Link>
-        </Flex>
-
-        {/* Join Waitlist Button */}
-        <MotionBox variants={itemVariants}>
-        <Button
-          bg="green.600"
-          rounded="full"
-          px={4}
-          py={2}
-          color="white"
-          _hover={{ bg: "green.700" }}
-          display={{ base: "none", md: "block" }}
-        >
-          Join Waitlist
-        </Button>
-        </MotionBox>
-      </Flex>
-
-      {/* Mobile Menu Icon (hidden when open) */}
-{!isOpen && (
-  <Box
-    display={{ base: "flex", md: "none" }}
-    position="absolute"
-    top={4}
-    right={4}
-    zIndex={20}
-    cursor="pointer"
-    w="2em"
-    h="3em"
-    alignItems="center"
-    justifyContent="center"
-  >
-    <Image
-      src="menu.png"
-      alt="Menu"
-      onClick={toggleDropdown}
-      w="100%"
-      h="100%"
-      objectFit="contain"
-    />
-  </Box>
-)}
-
-{/* Dropdown menu */}
-{isOpen && (
-  <MotionBox
-    position="absolute"
-    top={0}
-    left={0}
-    right={0}
-    zIndex={15}
-    bg="white"
-    initial={{ y: "-100%" }}
-    animate={{ y: 0 }}
-    exit={{ y: "-100%" }}
-    transition={{ type: "spring", stiffness: 100, damping: 20 }}
-    boxShadow="lg"
-    w="100%"
-    px={4}
-    py={4}
-  >
-    {/* Header inside dropdown */}
-    <Flex justify="space-between" mb={4} align="center">
-      <Box></Box>
-
-      {/* Cancel Icon */}
-      <Box cursor="pointer" onClick={toggleDropdown}>
-        <FiX size={24} />
-      </Box>
-    </Flex>
-
-    {/* Links */}
-    <VStack spacing={4} align="stretch">
-
-      <Link
-        href="/"
-        onClick={toggleDropdown}
-        _hover={{ bg: "#e0e0e0" }}
-        px={4}
-        py={2}
-        borderRadius="md"
-        transition="background-color 0.2s"
-      >
-        Home
-      </Link>
-      <Link
-        href="/#powerful-features"
-        onClick={toggleDropdown}
-        _hover={{ bg: "#e0e0e0" }}
-        px={4}
-        py={2}
-        borderRadius="md"
-        transition="background-color 0.2s"
-      >
-        Features
-      </Link>
-
-      {/* <Link
-        href="/about"
-        onClick={toggleDropdown}
-        _hover={{ bg: "#e0e0e0" }}
-        px={4}
-        py={2}
-        borderRadius="md"
-        transition="background-color 0.2s"
-      >
-        About Us
-      </Link> */}
-
-      <Link
-        href="/contact"
-        onClick={toggleDropdown}
-        _hover={{ bg: "#e0e0e0" }}
-        px={4}
-        py={2}
-        borderRadius="md"
-        transition="background-color 0.2s"
-      >
-        Contact Us
-      </Link>
-    </VStack>
-  </MotionBox>
-)}
-<MotionBox variants={itemVariants}>
+    <Box position="relative" w="100%" overflow="hidden">
+      
       <Box
-        bg="linear-gradient(to right bottom, #e5faeed8, #ffffff)"
-        mb="7em"
-        py="0.5em"
+        position="relative"
+        h={{ base: "250px", md: "300px" }}
+        bg="gray.800"
+        overflow="hidden"
       >
-        {/* Header */}
-        <Flex align="center" justify="center" mt="2em">
+       
+        <Box position="absolute" top="0" left="0" w="100%" h="100%">
+          
+          <Box
+            position="absolute"
+            top="-20%"
+            left="30%"
+            w="40%"
+            h="140%"
+            bg="blue.900"
+            transform="rotate(15deg)"
+            opacity={0.9}
+          />
+          
+          {/* Maroon/burgundy diagonal shape */}
+          <Box
+            position="absolute"
+            top="-30%"
+            left="0%"
+            w="35%"
+            h="160%"
+            bg="red.900"
+            transform="rotate(25deg)"
+            opacity={0.8}
+          />
+          
+          {/* Brown diagonal shape */}
+          <Box
+            position="absolute"
+            top="-10%"
+            right="10%"
+            w="45%"
+            h="120%"
+            bg="#8B4513"
+            transform="rotate(-20deg)"
+            opacity={0.85}
+          />
+          
+          {/* Gold/tan accent shape */}
+          <Box
+            position="absolute"
+            top="-15%"
+            right="5%"
+            w="20%"
+            h="130%"
+            bg="#C4A661"
+            transform="rotate(-15deg)"
+            opacity={0.7}
+          />
+          
+          {/* Dark overlay shapes */}
+          <Box
+            position="absolute"
+            bottom="-20%"
+            right="-5%"
+            w="50%"
+            h="100%"
+            bg="gray.900"
+            transform="rotate(-25deg)"
+            opacity={0.9}
+          />
+        </Box>
+
+        {/* Content */}
+        <Container
+          maxW="container.xl"
+          position="relative"
+          zIndex={2}
+          h="100%"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Text
+            fontSize={{ base: "4xl", md: "6xl" }}
+            fontWeight="bold"
+            color="white"
+            textAlign="center"
+            letterSpacing="wide"
+          >
+            ABOUT US
+          </Text>
+        </Container>
+      </Box>
+
+      {/* Pink breadcrumb bar */}
+      <Box bg="#FF1498" py={4}>
+        <Container maxW="container.xl">
+          <Breadcrumb
+            spacing={3}
+            separator={<Icon as={FaChevronRight} color="white" boxSize={3} />}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <BreadcrumbItem>
+              <BreadcrumbLink
+                href="/"
+                display="flex"
+                alignItems="center"
+                color="white"
+                fontSize="lg"
+                _hover={{ textDecoration: 'none', opacity: 0.8 }}
+              >
+                <Icon as={FaHome} boxSize={8} mr={2} />
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbItem isCurrentPage>
+              <BreadcrumbLink
+                color="white"
+                fontSize="2xl"
+                fontWeight="semibold"
+                _hover={{ textDecoration: 'none' }}
+              >
+                About Us
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </Breadcrumb>
+        </Container>
+      </Box>
+
+      {/* Know About Us Section */}
+      <Container maxW="container.xl" py={{ base: 12, md: 10 }}>
+        <Flex direction="column" align="center" gap={2}>
+          
           <Flex
             align="center"
-            justify="center"
-            gap="0.5em"
-            px="1em"
-            py="0.5em"
-            bg="lightgreen"
-            borderRadius="1em"
-            boxShadow="md"
+            gap={3}
+            bg="#FF1498"
+            px={8}
+            py={1}
+            borderRadius="sm"
+            color="white"
           >
-            <Box fontSize="xl" color="red.700">
-              <IoRocketSharp />
-            </Box>
-            <Text color="green" textAlign="center" fontSize="md">
-              About Ahiaoma
+            <Icon as={MdPrint} boxSize={5} />
+            <Text
+              fontSize={{ base: "lg", md: "xl" }}
+              fontWeight="medium"
+              fontStyle="italic"
+            >
+              Know About Us
             </Text>
+            <Icon as={MdPrint} boxSize={5} />
           </Flex>
+
+          {/* About Us heading */}
+          <Text
+            fontSize={{ base: "3xl", md: "5xl" }}
+            fontWeight="semibold"
+            color="navy"
+            textAlign="center"
+          >
+            About Us
+          </Text>
         </Flex>
+      </Container>
 
-        {/* Floating animated icons + text */}
-        <Flex
-          align="center"
-          justify="center"
-          textAlign="center"
-          flexDir="column"
-          mb="4em"
-          position="relative"
-        >
-          <MotionBox position="absolute" left="10%" top="65%">
-            <MotionIcon
-              color="rgb(70, 116, 161)"
-              animate={{ y: [0, -15, 0] }}
-              transition={{
-                duration: 2,
-                ease: "easeInOut",
-                repeat: Infinity,
-              }}
-            />
-          </MotionBox>
-          <MotionBox position="absolute" right="15%" bottom="60%">
-            <MotionIcon
-              color="aqua"
-              animate={{ y: [0, -20, 0] }}
-              transition={{
-                duration: 2.5,
-                ease: "easeInOut",
-                repeat: Infinity,
-              }}
-            />
-          </MotionBox>
-          <MotionBox position="absolute" left="5%" top="10%">
-            <MotionIcon
-              color="lightgreen"
-              animate={{ y: [0, -15, 0] }}
-              transition={{
-                duration: 1.8,
-                ease: "easeInOut",
-                repeat: Infinity,
-              }}
-            />
-          </MotionBox>
-
-          {/* Main Text */}
-          <VStack align="center" gap={4} mt={8}>
-            <Heading
-              fontSize={{ base: "6xl", md: "7xl" }}
-              fontWeight="bolder"
-              color="gray.600"
-              textAlign="center"
-            >
-              Your Marketplace for Fair and Fresh Food
-            </Heading>
+      {/* We Take Care Of Print Section */}
+      <Box position="relative" bg="gray.100" py={{ base: 8, md: 12 }} overflow="hidden">
+        <Container maxW="container.xl" px={{ base: 4, md: 8 }}>
+          <Flex
+            direction={{ base: "column", md: "row" }}
+            align="center"
+            position="relative"
+            gap={{ base: 8, md: 0 }}
+          >
+            {/* Left Image */}
             <Box
-              mt="0.5em"
-              fontWeight="normal"
-              fontSize="xl"
-              w={{ base: "90%", md: "37.5em" }}
-              textAlign="center"
-              color="gray"
+              w={{ base: "100%", md: "50%" }}
+              position="relative"
+              zIndex={2}
+              pl={{ base: 0, md: 8 }}
             >
-              <Text>
-                Connecting food producers directly to buyers through a seamless
-                digital platform. We're on a mission to fix Nigeria's broken
-                agricultural supply chain, ensuring fair pricing, reducing
-                waste, and delivering fresh, quality food efficiently.
-              </Text>
+              <Image
+                src="/public/Screenshot_22-1-2026_134113_demo.templatemonster.com.jpeg"
+                alt="Color Swatch Fan"
+                w="100%"
+                maxW={{ base: "100%", md: "550px" }}
+                h={{ base: "300px", md: "350px" }}
+                objectFit="cover"
+                borderRadius="15px"
+                boxShadow="2xl"
+              />
             </Box>
-          </VStack>
-        </Flex>
-      </Box>
-        </MotionBox>
 
-      {/* Challenges and Solution Section */}
-      <Flex gap="2em" px="1em" mb="2em" flexWrap="wrap" justify="center">
-      <MotionBox variants={itemVariants}>
-        {/* The Challenges */}
-        <Box px="1em" mt="4em" maxW="600px" w="100%">
-          <Heading mb="0.5em">The Challenge</Heading>
-          <List gap={3} fontSize="large" color="gray">
-            <ListItem mb="0.3em">
-              <Flex gap={"0.3em"} align={"center"}>
-              <Box px={"-0.5em"} h={"1.3em"} backgroundColor={"red.200"} w={"1em"} rounded={"3xl"}>
-              <ListIcon as={RiCheckboxBlankCircleFill} boxSize={3} mb={"0.4em"} ml={"0.2em"} color="red.500" />
-              </Box>
-              Up to 45% of produce is lost annually, amounting to over ₦3
-              trillion
-              </Flex>
-            </ListItem>
-            <ListItem mb="0.3em">
-              <Flex gap={"0.3em"}>
-              <Box  px={"-0.5em"} h={"1.3em"} backgroundColor={"red.200"} w={"1em"} rounded={"3xl"}>
-              <ListIcon as={RiCheckboxBlankCircleFill} boxSize={3} mb={"0.4em"} ml={"0.2em"} color="red.500" />
-              </Box>
-              Inefficient logistics channels and lack of modern storage
-              facilities
-              </Flex>
-            </ListItem>
-            <ListItem mb="0.3em">
-              <Flex gap={"0.3em"}>
-              <Box  px={"-0.5em"} h={"1.3em"} backgroundColor={"red.200"} w={"1em"} rounded={"3xl"}>
-              <ListIcon as={RiCheckboxBlankCircleFill} boxSize={3} mb={"0.4em"} ml={"0.2em"} color="red.500" />
-              </Box>
-              Limited market access and exploitative middlemen drive up costs
-              </Flex>
-            </ListItem>
-            <ListItem>
-              <Flex gap={"0.3em"}>
-              <Box  px={"-0.5em"} h={"1.3em"} backgroundColor={"red.200"} w={"1em"} rounded={"3xl"}>
-              <ListIcon as={RiCheckboxBlankCircleFill} boxSize={3} mb={"0.4em"} ml={"0.2em"} color="red.500" />
-              </Box>
-              Limited market access and exploitative middlemen drive up costs
-              </Flex>
-            </ListItem>
-          </List>
-        </Box>
-</MotionBox>
-<MotionBox  variants={itemVariants}>
-        {/* Our Solution */}
-        <Box px="1em" mb="2em" maxW="600px" w="100%">
-          <Heading mb="1em">Our Solution</Heading>
-          <Text mb="1em">Ahiaoma bridges these gaps by providing:</Text>
-          <List spacing={3} fontSize="large" color="gray">
-            <ListItem>
-              <ListIcon as={MdCheckCircle} color="green.800" />
-              <Text as="span" ml="0.5em">
-                Direct Connection: Linking food producers directly to buyers
-              </Text>
-            </ListItem>
-            <ListItem>
-              <ListIcon as={MdCheckCircle} color="green.800" />
-              <Text as="span" ml="0.5em">
-                Integrated Logistics: Streamlined delivery channels for
-                efficiency
-              </Text>
-            </ListItem>
-            <ListItem>
-              <ListIcon as={MdCheckCircle} color="green.800" />
-              <Text as="span" ml="0.5em">
-                Fair Pricing Tool: Ensuring equitable prices for all
-                stakeholders
-              </Text>
-            </ListItem>
-            <ListItem>
-              <ListIcon as={MdCheckCircle} color="green.800" />
-              <Text as="span" ml="0.5em">
-                Preservation Infrastructure: Solar-powered cold rooms and
-                preservation hubs
-              </Text>
-            </ListItem>
-            <ListItem>
-              <ListIcon as={MdCheckCircle} color="green.800" />
-              <Text as="span" ml="0.5em">
-                Finance Access: Microloans and financial services for producers
-              </Text>
-            </ListItem>
-          </List>
-        </Box>
-        </MotionBox> 
-      </Flex>
-
-      {/* Market Opportunity */}
-
-      <Box backgroundColor={"green.50"} py={"2em"} px="1em" mb="2em">
-        <MotionBox variants={itemVariants}>
-        <Heading
-          mb="0.5em"
-          fontSize={{base:"5xl", md:"4xl"}}
-          textAlign={"center"}
-          fontWeight="bold"
-        >
-          Market Opportunity
-        </Heading>
-        <Text w={{base:"13em", md:"25em"}} ml={{base:"1.5em", md:"22em"}} fontSize={{base:"2xl", md:"xl"}} color="gray" textAlign={"center"}>
-          Massive potential in Nigeria's agricultural market
-        </Text>
-        </MotionBox>
-        <MotionBox variants={itemVariants}>
-        <Grid
-          templateColumns="repeat(auto-fit, minmax(200px, 1fr))"
-          gap={4}
-          mt={6}
-        >
-          {[
-            {
-              value: "₦3T",
-              label: "TAM (Total Addressable Market)",
-              desc: "Agricultural produce trade in Nigeria",
-            },
-            {
-              value: "₦300B",
-              label: "SAM (Serviceable Available Market)",
-              desc: "Urban and semi-urban markets of Southeast Nigeria",
-            },
-            {
-              value: "₦3B",
-              label: "Target SOM",
-              desc: "Transactions within 3 years (1% of SAM)",
-            },
-          ].map((item, idx) => (
+            {/* Right Pink Box */}
             <Box
-              key={idx}
-              bg="white"
-              py={8}
-              w={"24em"}
-              rounded={"2em"}
-              textAlign="center"
-              transition="all 0.3s ease"
-              _hover={{
-                bg: "blue.50",
-                transform: "translateY(-5px)",
-                boxShadow: "lg",
-              }}
+              w={{ base: "100%", md: "65%" }}
+              bg="#FF1498"
+              position={{ base: "relative", md: "absolute" }}
+              right={{ base: 0, md: "-50px" }}
+              borderRadius="20px"
+              py={{ base: 10, md: 16 }}
+              px={{ base: 8, md: 16 }}
+              ml={{ base: 0, md: "20%" }}
+              zIndex={1}
             >
               <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                w="3em"
-                h="3em"
-                color="white"
-                borderRadius="full"
-                bg="#3b5998"
-                mx="auto"
+                maxW={{ base: "100%", md: "650px" }}
+                ml={{ base: 0, md: "100px" }}
+                pr={{ base: 0, md: 8 }}
               >
-                <BsFillStarFill />
+                <Heading
+                  as="h2"
+                  fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                  fontWeight="bold"
+                  color="wheat"
+                  mb={6}
+                  lineHeight="1.3"
+                >
+                  We Take Care Of Print, You Take Care Of Business
+                </Heading>
+
+                <Box
+                  w="300px"
+                  h="2px"
+                  bg="white"
+                  mb={8}
+                />
+
+                <Text
+                  fontSize={{ base: "md", md: "lg" }}
+                  color="wheat"
+                  mb={10}
+                  lineHeight="1.8"
+                >
+                  We Take Care Of Print, You Take Care Of Business. Our Team Delivers High-Quality Printing Solutions So You Can Focus On What You Do Best. We Take Care Of Print, You Take Care Of Business. Our Team Delivers High-Quality Printing Solutions So You Can Focus On What You Do Best.
+                </Text>
+
+                <Button
+                  size="lg"
+                  variant="outline"
+                  color="wheat"
+                  borderColor="white"
+                  borderWidth="3px"
+                  px={12}
+                  py={7}
+                  fontSize="md"
+                  fontWeight="bold"
+                  borderRadius="lg"
+                  _hover={{
+                    bg: "navy",
+                    color: "white",
+                  }}
+                  textTransform="uppercase"
+                  letterSpacing="wider"
+                >
+                  Contact Us
+                </Button>
               </Box>
-              <Text fontSize="4xl" fontWeight="bolder" mt={4}>
-                {item.value}
+            </Box>
+          </Flex>
+        </Container>
+      </Box>
+
+      {/* Our Services Section with Auto-Sliding */}
+      <Box bg="white" py={{ base: 12, md: 16 }}>
+        <Container maxW="container.xl">
+          {/* Section Header */}
+          <Flex direction="column" align="center" mb={12} gap={3}>
+            <Flex
+              align="center"
+              gap={3}
+              bg="#FF1498"
+              px={8}
+              py={2}
+              borderRadius="sm"
+              color="white"
+            >
+              <Icon as={MdPrint} boxSize={5} />
+              <Text
+                fontSize={{ base: "lg", md: "xl" }}
+                fontWeight="medium"
+                fontStyle="italic"
+              >
+                What We Offer
               </Text>
-              <Text color={"green"} fontSize={"lg"} fontWeight={"bolder"}>
-                {item.label}
+              <Icon as={MdPrint} boxSize={5} />
+            </Flex>
+
+            <Heading
+              as="h2"
+              fontSize={{ base: "3xl", md: "5xl" }}
+              fontWeight="semibold"
+              color="navy"
+              textAlign="center"
+            >
+              Our Services
+            </Heading>
+          </Flex>
+
+          {/* Services Slider */}
+          <Box position="relative" overflow="hidden">
+            <Box
+              display="flex"
+              transition="transform 3s ease-in-out"
+              transform={`translateX(-${currentSlide * 100}%)`}
+            >
+              {/* Slide 1 */}
+              <Box minW="100%" px={2}>
+                <Grid
+                  templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
+                  gap={8}
+                >
+                  {servicesSlide1.map((service, index) => (
+                    <Box
+                      key={index}
+                      borderRadius="20px"
+                      overflow="hidden"
+                      boxShadow="xl"
+                      transition="transform 0.3s"
+                      _hover={{ transform: "translateY(-10px)" }}
+                    >
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        w="100%"
+                        h="250px"
+                        objectFit="cover"
+                      />
+                      <Box bg="white" p={6} textAlign="center">
+                        <Heading
+                          as="h3"
+                          fontSize="2xl"
+                          fontWeight="bold"
+                          color="navy"
+                          mb={3}
+                        >
+                          {service.title}
+                        </Heading>
+                        <Text fontSize="md" color="gray.600" lineHeight="1.7">
+                          {service.description}
+                        </Text>
+                      </Box>
+                    </Box>
+                  ))}
+                </Grid>
+              </Box>
+
+              {/* Slide 2 */}
+              <Box minW="100%" px={2}>
+                <Grid
+                  templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
+                  gap={8}
+                >
+                  {servicesSlide2.map((service, index) => (
+                    <Box
+                      key={index}
+                      borderRadius="20px"
+                      overflow="hidden"
+                      boxShadow="xl"
+                      transition="transform 0.3s"
+                      _hover={{ transform: "translateY(-10px)" }}
+                    >
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        w="100%"
+                        h="250px"
+                        objectFit="cover"
+                      />
+                      <Box bg="white" p={6} textAlign="center">
+                        <Heading
+                          as="h3"
+                          fontSize="2xl"
+                          fontWeight="bold"
+                          color="navy"
+                          mb={3}
+                        >
+                          {service.title}
+                        </Heading>
+                        <Text fontSize="md" color="gray.600" lineHeight="1.7">
+                          {service.description}
+                        </Text>
+                      </Box>
+                    </Box>
+                  ))}
+                </Grid>
+              </Box>
+            </Box>
+          </Box>
+
+          {/* Slide Indicators */}
+          <Flex justify="center" mt={8} gap={3}>
+            <Box
+              w="12px"
+              h="12px"
+              borderRadius="full"
+              bg={currentSlide === 0 ? "#FF1498" : "gray.300"}
+              cursor="pointer"
+              onClick={() => setCurrentSlide(0)}
+              transition="all 0.3s"
+            />
+            <Box
+              w="12px"
+              h="12px"
+              borderRadius="full"
+              bg={currentSlide === 1 ? "#FF1498" : "gray.300"}
+              cursor="pointer"
+              onClick={() => setCurrentSlide(1)}
+              transition="all 0.3s"
+            />
+          </Flex>
+        </Container>
+      </Box>
+
+      {/* Statistics Section */}
+      <Box
+        position="relative"
+        bgImage="url('/public/Gemini_Generated_Image_a83761a83761a837.png')" 
+        bgSize="cover"
+        bgPosition="center"
+        bgAttachment="fixed"
+        py={{ base: 16, md: 20 }}
+        _before={{
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          bg: "rgba(0, 0, 0, 0.4)",
+          zIndex: 1,
+        }}
+      >
+        <Container maxW="container.xl" position="relative" zIndex={2}>
+          <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
+            {stats.map((stat, index) => (
+              <Flex
+                key={index}
+                direction="column"
+                align="center"
+                justify="center"
+                textAlign="center"
+                gap={4}
+              >
+                {/* Icon Box */}
+                <Box
+                  w="90px"
+                  h="90px"
+                  bg="#FF1498"
+                  border="3px solid white"
+                  borderRadius="md"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Icon as={stat.icon} boxSize={10} color="white" />
+                </Box>
+
+                {/* Count */}
+                <Text
+                  fontSize={{ base: "4xl", md: "5xl" }}
+                  fontWeight="bold"
+                  color="white"
+                  lineHeight="1"
+                >
+                  {stat.count}
+                </Text>
+
+                {/* Label */}
+                <Text
+                  fontSize={{ base: "lg", md: "xl" }}
+                  fontWeight="medium"
+                  color="white"
+                >
+                  {stat.label}
+                </Text>
+              </Flex>
+            ))}
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+{/* Our History Section */}
+      <Box bg="white" py={{ base: 12, md: 16 }}>
+        <Container maxW="container.xl">
+          <Flex direction="column" align="center" mb={12} gap={3}>
+            <Flex
+              align="center"
+              gap={3}
+              bg="#FF1498"
+              px={8}
+              py={2}
+              borderRadius="sm"
+              color="white"
+            >
+              <Icon as={MdPrint} boxSize={5} />
+              <Text
+                fontSize={{ base: "lg", md: "xl" }}
+                fontWeight="medium"
+                fontStyle="italic"
+              >
+                Our Journey
               </Text>
-              <Text fontSize="lg" mt={2} color="gray.600">
-                {item.desc}
+              <Icon as={MdPrint} boxSize={5} />
+            </Flex>
+
+            <Heading
+              as="h2"
+              fontSize={{ base: "3xl", md: "5xl" }}
+              fontWeight="semibold"
+              color="navy"
+              textAlign="center"
+            >
+              Our History
+            </Heading>
+          </Flex>
+
+          <Flex
+            direction={{ base: "column", md: "row" }}
+            align="center"
+            gap={10}
+          >
+            <Box w={{ base: "100%", md: "50%" }}>
+              <Image
+                src="/public/Gemini_Generated_Image_fmujd3fmujd3fmuj.png"
+                alt="Our History"
+                w="150%"
+                h={{ base: "300px", md: "400px" }}
+                objectFit="fill"
+                borderRadius="10px"
+                boxShadow="xl"
+              />
+            </Box>
+
+            <Box w={{ base: "100%", md: "50%" }}>
+              <Text
+                fontSize={{ base: "md", md: "lg" }}
+                color="gray.700"
+                lineHeight="1.8"
+                mb={4}
+              >
+                Simplelink printing press is an emergent organization with the purpose and determination to address the gaps in corporation branding and printing solutions in the country in the wake of emerging technology. It is founded as a division of simplelink association Ltd, which was registered as a limited liability company on 17th October, 2009. our existence as a company in Nigeria has made us to succeed in bridging the gaps in the use of innovative technology to provide printing solutions. 
+              </Text>
+              <Text
+                fontSize={{ base: "md", md: "lg" }}
+                color="gray.700"
+                lineHeight="1.8"
+                mb={4}
+              >
+                This has subsequently helped to achieve a reputation for the organization which presently is known for quality service and consistent concern for customer satisfaction. 
+              </Text>
+             
+            </Box>
+          </Flex>
+        </Container>
+      </Box>
+
+      {/* Our Company Section */}
+      <Box bg="gray.50" py={{ base: 12, md: 16 }}>
+        <Container maxW="container.xl">
+          <Flex direction="column" align="center" mb={12} gap={3}>
+            <Flex
+              align="center"
+              gap={3}
+              bg="#FF1498"
+              px={8}
+              py={2}
+              borderRadius="sm"
+              color="white"
+            >
+              <Icon as={MdPrint} boxSize={5} />
+              <Text
+                fontSize={{ base: "lg", md: "xl" }}
+                fontWeight="medium"
+                fontStyle="italic"
+              >
+                Who We Are
+              </Text>
+              <Icon as={MdPrint} boxSize={5} />
+            </Flex>
+
+            <Heading
+              as="h2"
+              fontSize={{ base: "3xl", md: "5xl" }}
+              fontWeight="semibold"
+              color="navy"
+              textAlign="center"
+            >
+              Our Company
+            </Heading>
+          </Flex>
+
+          <Flex
+            direction={{ base: "column-reverse", md: "row" }}
+            align="center"
+            gap={10}
+          >
+            <Box w={{ base: "100%", md: "50%" }}>
+              <Text
+                fontSize={{ base: "md", md: "lg" }}
+                color="gray.700"
+                lineHeight="1.8"
+                mb={4}
+              >
+                Simplelink printing press was registered in Nigeria with the aim of providing high quality corporate branding and printing services in all areas of concern involving printing of fliers, bill board/banners, calenders, diaries, conference bags/conference materials, folder/files/table blotters, season cards, cooperates gifts/medals/trophies, books/jottera/journals/magazines/newsletters, posters/handbills etc.
+                We have track record of excellence in delivery proven solutions in all of these areas.
+              </Text>
+              <Text
+                fontSize={{ base: "md", md: "lg" }}
+                color="gray.700"
+                lineHeight="1.8"
+                mb={4}
+              >
+                In simplelink printing press, we exceed customer's expectation and give unsolicited extras.
               </Text>
             </Box>
-          ))}
-        </Grid>
-        </MotionBox>
+
+            <Box w={{ base: "100%", md: "50%" }}>
+              <Image
+                src="/public/Gemini_Generated_Image_dptr3dptr3dptr3d.png"
+                alt="Our Company"
+                w="100%"
+                h={{ base: "300px", md: "400px" }}
+                objectFit="cover"
+                borderRadius="20px"
+                boxShadow="xl"
+              />
+            </Box>
+          </Flex>
+        </Container>
       </Box>
-      <Box py={"2em"} px="1em" mb="2em">
-        <MotionBox variants={itemVariants}>
-        <Heading
-          mb="0.5em"
-          fontSize="2xl"
-          textAlign={"center"}
-          fontWeight="bold"
-        >
-          Traction & Growth
-        </Heading>
-        <Text fontSize="lg" color="gray" textAlign={"center"}>
-          Building momentum across Nigeria's agricultural ecosystem{" "}
-        </Text>
-        </MotionBox>
-        <MotionBox variants={itemVariants}>
-          <SimpleGrid  
-          columns={{ base: 2, md: 4 }}
-        gap={{ base: "1em", md: "3em" }}
-        w="90%"
-        mx="auto"
-        >
-        {/* <Grid
-          templateColumns="repeat(auto-fit, minmax(200px, 1fr))"
-          gap={4}
-          mt={6}
-          ml={{base:"2.4em", md:"1em"}}
-        > */}
-          {[
-            {
-              value: "65+",
-              content: "Sellers Onboarded",
-              // desc: "Agricultural produce trade in Nigeria",
-            },
-            {
-              value: "150+",
-              content: "Buyers Registered",
-              // desc: "Urban and semi-urban markets of Southeast Nigeria",
-            },
-            {
-              value: "1,000+",
-              content: "Waitlist Users",
-              // desc: "Transactions within 3 years (1% of SAM)",
-            },
-            {
-              value: "3",
-              content: "Logistic Partners",
-              // desc: "Transactions within 3 years (1% of SAM)",
-            },
-          ].map((item, idx) => (
+
+      {/* Vision & Mission Section */}
+      <Box bg="white" py={{ base: 12, md: 16 }}>
+        <Container maxW="container.xl">
+          <Grid
+            templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+            gap={10}
+          >
+            {/* Vision */}
             <Box
-              key={idx}
-              bg="green.50"
-              mt={"2em"}
-              px={4}
-              py={8}
-                      // mx="auto"
-              // ml={"1em"}
-              w={{base:"10.5em", md:"19em"}}
-              h={"8em"}
-              border={"1px solid lightgreen"}
-              rounded={"1em"}
-              textAlign="center"
-              transition="all 0.3s ease"
-              _hover={{
-                bg: "blue.50",
-                transform: "translateY(-5px)",
-                boxShadow: "lg",
+              bg="linear-gradient(135deg, #FF1498 0%, #FF69B4 100%)"
+              p={{ base: 8, md: 10 }}
+              borderRadius="20px"
+              boxShadow="xl"
+              position="relative"
+              overflow="hidden"
+              _before={{
+                content: '""',
+                position: "absolute",
+                top: "-50%",
+                right: "-50%",
+                width: "200%",
+                height: "200%",
+                background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)",
               }}
             >
-              <Text
-                fontSize="4xl"
-                color={"green"}
-                fontWeight="bolder"
-                mt={"-0.5em"}
-              >
-                {item.value}
-              </Text>
-              <Text color={"gray.500"} fontSize={"lg"} fontWeight={"bold"}>
-                {item.content}
-              </Text>
+              <Flex direction="column" align="center" position="relative" zIndex={1}>
+                <Icon as={FaAward} boxSize={16} color="white" mb={6} />
+                <Heading
+                  as="h3"
+                  fontSize={{ base: "2xl", md: "3xl" }}
+                  fontWeight="bold"
+                  color="white"
+                  mb={6}
+                  textAlign="center"
+                >
+                  Our Vision
+                </Heading>
+                <Text
+                  fontSize={{ base: "md", md: "lg" }}
+                  color="white"
+                  lineHeight="1.8"
+                  textAlign="center"
+                >
+                  Our Vision is to be the most formidable and recognized company known for high quality and printing solutions in Nigeria.
+                </Text>
+              </Flex>
             </Box>
-          ))}
-          </SimpleGrid>
-        {/* </Grid> */}
-        </MotionBox>
+
+            {/* Mission */}
+            <Box
+              bg="linear-gradient(135deg, #001f3f 0%, #003d7a 100%)"
+              p={{ base: 8, md: 10 }}
+              borderRadius="20px"
+              boxShadow="xl"
+              position="relative"
+              overflow="hidden"
+              _before={{
+                content: '""',
+                position: "absolute",
+                top: "-50%",
+                right: "-50%",
+                width: "200%",
+                height: "200%",
+                background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)",
+              }}
+            >
+              <Flex direction="column" align="center" position="relative" zIndex={1}>
+                <Icon as={FaUsersCog} boxSize={16} color="white" mb={6} />
+                <Heading
+                  as="h3"
+                  fontSize={{ base: "2xl", md: "3xl" }}
+                  fontWeight="bold"
+                  color="white"
+                  mb={6}
+                  textAlign="center"
+                >
+                  Our Mission
+                </Heading>
+                <Text
+                  fontSize={{ base: "md", md: "lg" }}
+                  color="white"
+                  lineHeight="1.8"
+                  textAlign="center"
+                >
+                  Our mission is to provide branding and printing services to our clients and customers at an affordable price, while maximizing our potentials and using the best hands to achieve value and satisfaction for both internal and external stakeholders in our operation.
+                </Text>
+              </Flex>
+            </Box>
+          </Grid>
+        </Container>
       </Box>
-      <MotionBox variants={itemVariants}>
-      <Box textAlign={"center"}>
-        <Heading>Meet Our Team</Heading>
-        <Text color={"gray.500"} fontSize={{base:"xl", md:""}} w={{base:"19em", md:"auto"}} fontWeight={"semibold"} ml={{base:"1em",md:"auto"}}>The Visionaries building the future of Nigerian commerce</Text>
-      </Box>
-</MotionBox>
-<MotionBox variants={itemVariants}>
-      <Grid templateColumns="repeat(auto-fit, minmax(18em, 1fr))" gap="20px">
-        {/* Card 1 with left margin to shift from the edge */}
-        <Box
-          // Removed hover scale effect
-          _hover={{ boxShadow: "5xl" }}
-          transition="all 0.3s ease"
-          textAlign="center"
-          ml={{base:"0.3em", md:"7em"}} // Add this line to shift from the left edge
-        >
-          <Box
-            width="25em"
-            height="15em"
-            p="1em"
-            bg="whitesmoke"
-            shadow="md"
-            alignContent={"center"}
-            rounded="md"
-          >
-            <Box
-              width="5em"
-              border={"4px solid white"}
-              height="5em"
-              overflow="hidden"
-              borderRadius="50%"
-              mx="auto"
-            >
-              <Image
-                src="FlorenceSydney.jpeg"
-                boxSize="100%"
-                objectFit="cover"
-              />
-            </Box>
-            <Heading fontSize="xl" mt="1em" mb="0.5em" textAlign="center">
-              Florence Sydney
-            </Heading>
-            <Text
-              color="green.500"
-              fontWeight="bold"
-              fontSize={"lg"}
-              textAlign="center"
-            >
-              CEO / Founder
-            </Text>
-            <Text fontSize="md" color="gray.500" textAlign="center">
-              6+ years in Marketing
-            </Text>
-          </Box>
-        </Box>
 
-        {/* Card 2 */}
-        <Box
-          // Removed hover scale effect
-          _hover={{ boxShadow: "xl" }}
-          transition="all 0.3s ease"
-          textAlign="center"
-           ml={{base:"0.3em", md:"4em"}} 
-        >
-          <Box
-            width="25em"
-            height="15em"
-            p="1em"
-            bg="whitesmoke"
-            shadow="lg"
-            rounded="md"
-          >
-            <Box
-              width="5em"
-              border={"4px solid white"}
-              height="5em"
-              overflow="hidden"
-              borderRadius="50%"
-              mx="auto"
-            >
-              <Image
-                src="headshot_ephraim.jpeg"
-                boxSize="100%"
-                objectFit="cover"
-              />
-            </Box>
-            <Heading fontSize="xl" mt="1em" mb="0.5em" textAlign="center">
-              Ephraim Umunnakwe
-            </Heading>
-            <Text
-              color="green.500"
-              fontWeight="bold"
-              fontSize={"lg"}
-              textAlign="center"
-            >
-              CTO / Co-Founder
-            </Text>
-            <Text fontSize="md" color="gray.500" textAlign="center">
-              8+ years in Software Engineering
-            </Text>
-          </Box>
-        </Box>
-
-        {/* Card 3 */}
-        <Box
-          // Removed hover scale effect
-          _hover={{ boxShadow: "xl" }}
-          transition="all 0.3s ease"
-          textAlign="center"
-          ml={{base:"0.3em", md:"1em"}} 
-        >
-          <Box
-            width="25em"
-            height="15em"
-            p="1em"
-            bg="whitesmoke"
-            shadow="md"
-            rounded="md"
-          >
-            <Box
-              width="5em"
-              border={"4px solid white"}
-              height="5em"
-              overflow="hidden"
-              borderRadius="50%"
-              mx="auto"
-            >
-              <Image src="RuthSolomon.jpeg" boxSize="100%" objectFit="cover" />
-            </Box>
-            <Heading fontSize="xl" mt="1em" mb="0.5em" textAlign="center">
-              Ruth Solomon
-            </Heading>
-            <Text
-              color="green.500"
-              fontWeight="bold"
-              fontSize={"lg"}
-              textAlign="center"
-            >
-              Head of Logistics & Partnerships
-            </Text>
-            <Text fontSize="md" color="gray.500" textAlign="center">
-              7 years of experience in marketing and sales of FMCG
-            </Text>
-          </Box>
-        </Box>
-
-        {/* Last Card spanning full width and centered content */}
-        <Box
-          gridColumn="1 / 1"
-          // Removed hover scale effect
-          _hover={{ boxShadow: "xl" }}
-          transition="all 1s ease"
-          textAlign="center"
-          mt="-0.9em"
-           ml={{base:"0.3em", md:"6.9em"}} 
-          mb={"2em"}
-        >
-          <Box
-            width="25em"
-            height="15em"
-            p="1em"
-            bg="whitesmoke"
-            shadow="lg"
-            rounded="md"
-            mx="auto"
-          >
-            <Box
-              width="5em"
-              border={"4px solid white"}
-              height="5em"
-              overflow="hidden"
-              borderRadius="50%"
-              mx="auto"
-            >
-              <Image src="WilcoxEjima.jpeg" boxSize="100%" objectFit="cover" />
-            </Box>
-            <Heading fontSize="xl" mt="1em" mb="0.5em">
-              Wilcox Egima
-            </Heading>
-            <Text
-              color="green.500"
-              fontWeight="bold"
-              fontSize={"lg"}
-              mb="0.5em"
-            >
-              Chief Agricultural Officer
-            </Text>
-            <Text fontSize="md" color="gray.500">
-              5+ years of Experience
-            </Text>
-          </Box>
-        </Box>
-      </Grid>
-      </MotionBox>
+      {/* Core Values Section */}
       <Box
-        bg="#02A150"
-        color="white"
-        py={{ base: 10, md: 20 }}
-        px={{ base: 5, md: 20 }}
+        bg="gray.50"
+        py={{ base: 12, md: 16 }}
+        position="relative"
       >
-        <MotionBox variants={itemVariants}>
-        {/* OUR VISION */}
-        <Box maxW="800px">
-          <Heading fontSize={{ base: "2xl", md: "3xl" }} mb={4}>
-            Our Vision
-          </Heading>
-
-          <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.8">
-            To become Nigeria's leading digital food marketplace; Connecting
-            sellers and buyers, ensuring fair pricing, reducing waste, and
-            delivering fresh, quality food efficiently.
-          </Text>
-        </Box>
-</MotionBox>
-        {/* COMPETITIVE ADVANTAGE BOX */}
-        <MotionBox variants={itemVariants}>
-        <Box
-          bg="rgba(255,255,255,0.15)"
-          backdropFilter="blur(6px)"
-          borderRadius="lg"
-          p={{ base: 5, md: 10 }}
-          mt={10}
-          maxW="900px"
-        >
-          <Heading fontSize="xl" mb={3}>
-            Competitive Advantage
-          </Heading>
-
-          <Text mb={5}>Ahiaoma takes an integrated approach, combining:</Text>
-          <List>
-            {/* FLEX LIST (Now working correctly) */}
+        <Container maxW="container.xl">
+          <Flex direction="column" align="center" mb={12} gap={3}>
             <Flex
-              direction={{ base: "column", md: "row" }}
-              gap={{ base: 4, md: 10 }}
-              align="flex-start"
+              align="center"
+              gap={3}
+              bg="#FF1498"
+              px={8}
+              py={2}
+              borderRadius="sm"
+              color="white"
             >
-              {/* Item 1 */}
-              <MotionBox variants={itemVariants}>
-              <Flex align="center">
-                <ListIcon as={IoEllipseSharp} color="white" boxSize={3} />
-                <Text ml={2}>A digital Marketplace</Text>
-              </Flex>
-</MotionBox>
-              {/* Item 2 */}
-              <MotionBox variants={itemVariants}>
-              <Flex align="center">
-                <ListIcon as={IoEllipseSharp} color="white" boxSize={3} />
-                <Text ml={2}>Logistics solutions</Text>
-              </Flex>
-              </MotionBox>
-
-              {/* Item 3 */}
-              <MotionBox variants={itemVariants}>
-              <Flex align="center">
-                <ListIcon as={IoEllipseSharp} color="white" boxSize={3} />
-                <Text ml={2}>Preservation infrastructure</Text>
-              </Flex>
-            </MotionBox>
+              <Icon as={MdPrint} boxSize={5} />
+              <Text
+                fontSize={{ base: "lg", md: "xl" }}
+                fontWeight="medium"
+                fontStyle="italic"
+              >
+                What Drives Us
+              </Text>
+              <Icon as={MdPrint} boxSize={5} />
             </Flex>
-          </List>
 
-          <Text mt={6} fontSize="sm" opacity={0.9}>
-            This holistic model enables us to solve supply chain challenges
-            end-to-end.
-          </Text>
-        </Box>
-      </MotionBox>
+            <Heading
+              as="h2"
+              fontSize={{ base: "3xl", md: "5xl" }}
+              fontWeight="semibold"
+              color="navy"
+              textAlign="center"
+              mb={4}
+            >
+              Our Core Values
+            </Heading>
+
+            <Text
+              fontSize={{ base: "md", md: "lg" }}
+              color="gray.600"
+              textAlign="center"
+              maxW="800px"
+            >
+              We exist to faster mutually beneficial business relationships. In this regard, we adhere strickly to certain cherish values to define our operation in the markrt place. our core values include:
+            </Text>
+          </Flex>
+
+          <Grid
+            templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
+            gap={8}
+          >
+            {/* Value 1: Quality */}
+            <Box
+              bg="white"
+              p={8}
+              borderRadius="20px"
+              boxShadow="lg"
+              transition="all 0.3s"
+              _hover={{
+                transform: "translateY(-10px)",
+                boxShadow: "2xl",
+              }}
+              borderTop="5px solid #FF1498"
+            >
+              <Flex direction="column" align="center" textAlign="center">
+                <Box
+                  w="80px"
+                  h="80px"
+                  bg="#FF1498"
+                  borderRadius="full"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  mb={6}
+                >
+                  <Icon as={FaAward} boxSize={10} color="white" />
+                </Box>
+                <Heading
+                  as="h4"
+                  fontSize="2xl"
+                  fontWeight="bold"
+                  color="navy"
+                  mb={4}
+                >
+                  Excellence
+                </Heading>
+                <Text fontSize="md" color="gray.600" lineHeight="1.8">
+                  We never compromise on quality. Every project receives our meticulous attention to detail, ensuring results that exceed expectations and stand the test of time.
+                </Text>
+              </Flex>
+            </Box>
+
+            {/* Value 2: Customer Focus */}
+            <Box
+              bg="white"
+              p={8}
+              borderRadius="20px"
+              boxShadow="lg"
+              transition="all 0.3s"
+              _hover={{
+                transform: "translateY(-10px)",
+                boxShadow: "2xl",
+              }}
+              borderTop="5px solid #FF1498"
+            >
+              <Flex direction="column" align="center" textAlign="center">
+                <Box
+                  w="80px"
+                  h="80px"
+                  bg="#FF1498"
+                  borderRadius="full"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  mb={6}
+                >
+                  <Icon as={FaUsers} boxSize={10} color="white" />
+                </Box>
+                <Heading
+                  as="h4"
+                  fontSize="2xl"
+                  fontWeight="bold"
+                  color="navy"
+                  mb={4}
+                >
+                  Customer Service
+                </Heading>
+                <Text fontSize="md" color="gray.600" lineHeight="1.8">
+                  Your success is our priority. We listen, understand, and deliver solutions tailored to your unique needs, building lasting relationships based on trust.
+                </Text>
+              </Flex>
+            </Box>
+
+            {/* Value 3: Innovation */}
+            <Box
+              bg="white"
+              p={8}
+              borderRadius="20px"
+              boxShadow="lg"
+              transition="all 0.3s"
+              _hover={{
+                transform: "translateY(-10px)",
+                boxShadow: "2xl",
+              }}
+              borderTop="5px solid #FF1498"
+            >
+              <Flex direction="column" align="center" textAlign="center">
+                <Box
+                  w="80px"
+                  h="80px"
+                  bg="#FF1498"
+                  borderRadius="full"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  mb={6}
+                >
+                  <Icon as={MdPrint} boxSize={10} color="white" />
+                </Box>
+                <Heading
+                  as="h4"
+                  fontSize="2xl"
+                  fontWeight="bold"
+                  color="navy"
+                  mb={4}
+                >
+                  Impeccability
+                </Heading>
+                <Text fontSize="md" color="gray.600" lineHeight="1.8">
+                  We hold ourselves to the highest standards of professionalism and excellence. Every interaction, every deliverable reflects our commitment to doing things right the first time.
+                </Text>
+              </Flex>
+            </Box>
+
+            {/* Value 4: Integrity */}
+            <Box
+              bg="white"
+              p={8}
+              borderRadius="20px"
+              boxShadow="lg"
+              transition="all 0.3s"
+              _hover={{
+                transform: "translateY(-10px)",
+                boxShadow: "2xl",
+              }}
+              borderTop="5px solid #FF1498"
+            >
+              <Flex direction="column" align="center" textAlign="center">
+                <Box
+                  w="80px"
+                  h="80px"
+                  bg="#FF1498"
+                  borderRadius="full"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  mb={6}
+                >
+                  <Icon as={FaClipboardList} boxSize={10} color="white" />
+                </Box>
+                <Heading
+                  as="h4"
+                  fontSize="2xl"
+                  fontWeight="bold"
+                  color="navy"
+                  mb={4}
+                >
+                  Integrity
+                </Heading>
+                <Text fontSize="md" color="gray.600" lineHeight="1.8">
+                  Honesty and transparency guide everything we do. We build trust through ethical practices, fair pricing, and keeping our promises every single time.
+                </Text>
+              </Flex>
+            </Box>
+
+            {/* Value 5: Sustainability */}
+            <Box
+              bg="white"
+              p={8}
+              borderRadius="20px"
+              boxShadow="lg"
+              transition="all 0.3s"
+              _hover={{
+                transform: "translateY(-10px)",
+                boxShadow: "2xl",
+              }}
+              borderTop="5px solid #FF1498"
+            >
+              <Flex direction="column" align="center" textAlign="center">
+                <Box
+                  w="80px"
+                  h="80px"
+                  bg="#FF1498"
+                  borderRadius="full"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  mb={6}
+                >
+                  <Icon as={FaHome} boxSize={10} color="white" />
+                </Box>
+                <Heading
+                  as="h4"
+                  fontSize="2xl"
+                  fontWeight="bold"
+                  color="navy"
+                  mb={4}
+                >
+                  Sustainability
+                </Heading>
+                <Text fontSize="md" color="gray.600" lineHeight="1.8">
+                  We care about our planet. From eco-friendly materials to responsible waste management, we're committed to minimizing our environmental impact.
+                </Text>
+              </Flex>
+            </Box>
+
+            {/* Value 6: Teamwork */}
+            <Box
+              bg="white"
+              p={8}
+              borderRadius="20px"
+              boxShadow="lg"
+              transition="all 0.3s"
+              _hover={{
+                transform: "translateY(-10px)",
+                boxShadow: "2xl",
+              }}
+              borderTop="5px solid #FF1498"
+            >
+              <Flex direction="column" align="center" textAlign="center">
+                <Box
+                  w="80px"
+                  h="80px"
+                  bg="#FF1498"
+                  borderRadius="full"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  mb={6}
+                >
+                  <Icon as={FaUsersCog} boxSize={10} color="white" />
+                </Box>
+                <Heading
+                  as="h4"
+                  fontSize="2xl"
+                  fontWeight="bold"
+                  color="navy"
+                  mb={4}
+                >
+                  Teamwork
+                </Heading>
+                <Text fontSize="md" color="gray.600" lineHeight="1.8">
+                  Collaboration fuels our success. We work together as one team, combining our diverse skills and expertise to deliver exceptional results for you.
+                </Text>
+              </Flex>
+            </Box>
+          </Grid>
+        </Container>
       </Box>
-     {/* Footer */}
-     <MotionBox variants={itemVariants}>
-<Box bg="#000" color="#fff" p={8} fontFamily="Arial, sans-serif" mt={"-2em"}>
-  {/* Main Footer Content */}
-  <Flex
-    flexDirection={{ base: "column", md: "row" }}
-    // maxW="1200px"
-    mx="auto"
-    justify={{ base: "center", md: "space-between" }}
-    align={{ base: "start", md: "center" }}
-    gap={8}
-  >
-    {/* About Section */}
-    <Box minW="200px" mb={{ base: 4, md: 0 }}>
-      <Text fontWeight="bold" fontSize="xl" color="#00C853">
-        Ahiaoma
-      </Text>
-      <Text mt={2} fontSize="md" color={"gray.400"}>
-        Nigeria's premier marketplace connecting millions of buyers and
-        sellers. Shop with confidence, sell with ease.
-      </Text>
+
     </Box>
-
-    {/* Quick Links */}
-    <Box minW="200px" mb={{ base: 4, md: 0 }}>
-      <Text fontWeight="bold" fontSize="lg" mb={4}>
-        Quick Links
-      </Text>
-      <VStack align="start" gap={2}>
-        <Flex gap="5px" align="center">
-          <IoEllipseSharp size="8px" color="green" />
-          <Link href="/about">
-            <Text cursor="pointer" color="gray.400" fontSize="lg">
-              About Us
-            </Text>
-          </Link>
-        </Flex>
-        <Flex gap="5px" align="center">
-          <IoEllipseSharp size="8px" color="green" />
-          <Link href="/#powerful-features">
-            <Text cursor="pointer" color="gray.400" fontSize="lg">
-              How It Works
-            </Text>
-          </Link>
-        </Flex>
-        <Flex gap="5px" align="center">
-          <IoEllipseSharp size="8px" color="green" />
-          <Text cursor="pointer" color="gray.400" fontSize="lg">
-            Seller Center
-          </Text>
-        </Flex>
-        <Flex gap="5px" align="center">
-          <IoEllipseSharp size="8px" color="green" />
-          <Text cursor="pointer" color="gray.400" fontSize="lg">
-            Help Center
-          </Text>
-        </Flex>
-      </VStack>
-    </Box>
-
-    {/* Contact */}
-    <Box minW="200px" mb={{ base: 4, md: 0 }}>
-      <Text fontWeight="bold" fontSize="lg" mb={4}>
-        Contact
-      </Text>
-      <VStack align="start" gap={2}>
-        <HStack align="center" gap={2}>
-          <Box bg="#4CAF50" p={2} borderRadius="md" h="2.2em">
-            <Icon as={MdOutlineEmail} color="#fff" boxSize={4} />
-          </Box>
-          <Text fontSize="lg" color="gray.400">
-            ahiaoma37@gmail.com
-          </Text>
-        </HStack>
-        <HStack align="center" gap={2}>
-          <Box bg="#2196F3" p={2} borderRadius="md" h="2.2em">
-            <Icon as={FaPhone} color="#fff" boxSize={4} />
-          </Box>
-          <Text fontSize="lg" color="gray.400">
-            +234 907 940 5147
-          </Text>
-        </HStack>
-      </VStack>
-    </Box>
-  </Flex>
-
-   {/* Divider */}
-  <Box border="1px"  borderColor="gray.600" my={4} w="100%" />
-
-  {/* Bottom row for privacy/terms, responsive */}
-  <Flex
-    flexDirection={{ base: "column", md: "row" }}
-    align="center"
-    justify="space-between"
-    // maxW="1200px"
-    mx="auto"
-    px={4}
-    gap={{ base: 2, md: 0 }}
-  >
-    <Text fontSize="sm" ml={{base:"-1em",md:"-3em"}} w={{base:"24em", md:"29em"}} textAlign="center">
-      © 2025 Ahiaoma. All rights reserved.
-    </Text>
-    {/* Privacy and other links */}
-    <Flex
-      gap={4}
-      justify={{ base: "center", md: "flex-end" }}
-      w="100%"
-      mt={{ base: 2, md: 0 }}
-      flexWrap="wrap"
-    >
-      <Text cursor="pointer" fontSize="sm">
-        Privacy Policy
-      </Text>
-      <Text cursor="pointer" fontSize="sm">
-        Terms of Service
-      </Text>
-      <Text cursor="pointer" fontSize="sm">
-        Cookies Policy
-      </Text>
-    </Flex>
-  </Flex>
-</Box>
-</MotionBox>
-        </Box>
-        </MotionBox>
-    </>
   );
 };
 

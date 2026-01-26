@@ -1,11 +1,8 @@
 import { Flex, Image } from "@chakra-ui/react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,  } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import Home from "./Components/Home";
 import About from "./Components/about/About";
-// import Contact from "./Components/Contact";
-// import { Work } from "./Components/work";
 
 function AppContent() {
   const [loading, setLoading] = useState(true);
@@ -24,14 +21,10 @@ function AppContent() {
   }
 
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        {/* <Route path="/service" element={<Service />} /> */}
-        {/* <Route path="/contact" element={<Contact />} /> */}
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<About />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
   );
 }
 
