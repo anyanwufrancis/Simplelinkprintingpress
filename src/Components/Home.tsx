@@ -329,7 +329,7 @@ const Home = () => {
       </Modal>
       {/* ================= YOUR EXISTING PAGE CONTINUES BELOW ================= */}
       {/* SLIDER */}
-           <Box position="relative" minH="70vh" overflow="hidden" pt="80px">
+      <Box position="relative" minH="70vh" overflow="hidden" pt="80px">
         <AnimatePresence mode="wait">
           <MotionBox
             key={slideIndex}
@@ -363,39 +363,37 @@ const Home = () => {
               <Text mt={4} fontSize={{ base: "md", md: "2xl" }}>
                 {slides[slideIndex].text}
               </Text>
-              <Link href="/Contact#form">
+              <Link href="/Contact">
                 <Button mt={6} colorScheme="pink" size="lg">
                   Contact Us
                 </Button>
               </Link>
             </Flex>
           </MotionBox>
- 
-
         </AnimatePresence>
         {/* ✅ SLIDER PAGINATION DOTS */}
-<Flex
-  position="absolute"
-  bottom="25px"
-  left="50%"
-  transform="translateX(-50%)"
-  gap={3}
-  zIndex={5}
->
-  {slides.map((_, index) => (
-    <Box
-      key={index}
-      w={slideIndex === index ? "14px" : "10px"}
-      h="10px"
-      bg={slideIndex === index ? "pink.400" : "whiteAlpha.600"}
-      rounded="full"
-      cursor="pointer"
-      transition="all 0.3s ease"
-      onClick={() => setSlideIndex(index)}
-      _hover={{ bg: "pink.300" }}
-    />
-  ))}
-</Flex>
+        <Flex
+          position="absolute"
+          bottom="25px"
+          left="50%"
+          transform="translateX(-50%)"
+          gap={3}
+          zIndex={5}
+        >
+          {slides.map((_, index) => (
+            <Box
+              key={index}
+              w={slideIndex === index ? "14px" : "10px"}
+              h="10px"
+              bg={slideIndex === index ? "pink.400" : "whiteAlpha.600"}
+              rounded="full"
+              cursor="pointer"
+              transition="all 0.3s ease"
+              onClick={() => setSlideIndex(index)}
+              _hover={{ bg: "pink.300" }}
+            />
+          ))}
+        </Flex>
       </Box>
       {/* Features Section */}{" "}
       <Box py={{ base: 10, md: 16 }} px={{ base: 4, md: 12 }} bg="gray.50">
@@ -451,8 +449,14 @@ const Home = () => {
         </Grid>{" "}
       </Box>
       {/* PROJECTS GRID */}
-      <Heading id="projects" mt="1em"
-      mb={"1em"} color={"purple.800"} fontSize={"6xl"} textAlign="center">
+      <Heading
+        id="projects"
+        mt="1em"
+        mb={"1em"}
+        color={"purple.800"}
+        fontSize={"6xl"}
+        textAlign="center"
+      >
         Our Projects
       </Heading>
       <Flex justify="center" gap={4} mb={6} flexWrap="wrap">
@@ -461,15 +465,15 @@ const Home = () => {
             key={cat.key}
             onClick={() => setCategory(cat.key as CategoryKey)}
             colorScheme={category === cat.key ? "pink" : "gray"}
-          // Default Navy Blue
-    bg={category === cat.key ? "pink.400" : "#1a0047"} 
-    color="white"
-    // Pink on Hover
-    _hover={{ bg: "pink.400" }}
-    // Optional: Keep it pink when active/pressed
-    _active={{ bg: "pink.500" }}
-    transition="all 0.3s ease"
-         >
+            // Default Navy Blue
+            bg={category === cat.key ? "pink.400" : "#1a0047"}
+            color="white"
+            // Pink on Hover
+            _hover={{ bg: "pink.400" }}
+            // Optional: Keep it pink when active/pressed
+            _active={{ bg: "pink.500" }}
+            transition="all 0.3s ease"
+          >
             {cat.label}
           </Button>
         ))}
@@ -570,10 +574,12 @@ const Home = () => {
           bg="blackAlpha.400"
           style={{ backdropFilter: "blur(5px)" }}
         />
-        <Button colorScheme="pink" mt={"14em"} ml={"2em"} size="lg">
-          {" "}
-          Contact Us{" "}
-        </Button>{" "}
+        <Link href="/Contact">
+          <Button colorScheme="pink" mt={"14em"} ml={"2em"} size="lg">
+            {" "}
+            Contact Us{" "}
+          </Button>{" "}
+        </Link>
         <Heading
           color="white"
           px={{ base: 4, md: 8 }}

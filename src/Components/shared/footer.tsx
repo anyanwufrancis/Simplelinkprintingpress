@@ -35,7 +35,7 @@ const Footer = () => {
           {/* About Section */}
           <Box minW="200px" mb={{ base: 4, md: 0 }}>
             <Text fontWeight="bold" fontSize="2xl" color="#00C853">
-              SimpleLinkPrintingPress
+              SimpleLinkPress
             </Text>
             <Text
               mt={2}

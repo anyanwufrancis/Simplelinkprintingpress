@@ -87,7 +87,7 @@ const Header = ({ onOpenSearch }: HeaderProps) => {
             />
 
             {/* /* Replace your Contact IconButton with this */ }
-<Link href="/Login">
+<Link href="/contact">
   <IconButton
     aria-label="Login"
     icon={<IoMdContact />}
