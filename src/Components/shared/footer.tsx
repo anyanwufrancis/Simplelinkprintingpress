@@ -14,14 +14,14 @@ const Footer = () => {
 
   // Optional spinning effect (not used in this footer but kept)
 
-  // Animation variants
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.9 } },
-  };
+  // // Animation variants
+  // const itemVariants = {
+  //   hidden: { opacity: 0, y: 20 },
+  //   visible: { opacity: 1, y: 0, transition: { duration: 0.9 } },
+  // };
 
   return (
-    <MotionBox variants={itemVariants} initial="hidden" animate="visible">
+    <MotionBox >
       {/* Main Footer */}
       <Box bg="#000" color="#fff" p={4} fontFamily="Arial, sans-serif" mt={10}>
         <Flex
@@ -160,7 +160,7 @@ const Footer = () => {
         </Flex>
 
         {/* Divider */}
-        <MotionBox variants={itemVariants} initial="hidden" animate="visible">
+        <MotionBox>
           <Box border="1px" borderColor="gray.600" my={4} w="100%" />
           <Flex
             flexDirection={{ base: "column", md: "row" }}

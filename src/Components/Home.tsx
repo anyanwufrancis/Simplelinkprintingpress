@@ -329,7 +329,7 @@ const Home = () => {
       </Modal>
       {/* ================= YOUR EXISTING PAGE CONTINUES BELOW ================= */}
       {/* SLIDER */}
-      <Box position="relative" minH="70vh" overflow="hidden" pt="80px">
+           <Box position="relative" minH="70vh" overflow="hidden" pt="80px">
         <AnimatePresence mode="wait">
           <MotionBox
             key={slideIndex}
@@ -370,7 +370,32 @@ const Home = () => {
               </Link>
             </Flex>
           </MotionBox>
+ 
+
         </AnimatePresence>
+        {/* ✅ SLIDER PAGINATION DOTS */}
+<Flex
+  position="absolute"
+  bottom="25px"
+  left="50%"
+  transform="translateX(-50%)"
+  gap={3}
+  zIndex={5}
+>
+  {slides.map((_, index) => (
+    <Box
+      key={index}
+      w={slideIndex === index ? "14px" : "10px"}
+      h="10px"
+      bg={slideIndex === index ? "pink.400" : "whiteAlpha.600"}
+      rounded="full"
+      cursor="pointer"
+      transition="all 0.3s ease"
+      onClick={() => setSlideIndex(index)}
+      _hover={{ bg: "pink.300" }}
+    />
+  ))}
+</Flex>
       </Box>
       {/* Features Section */}{" "}
       <Box py={{ base: 10, md: 16 }} px={{ base: 4, md: 12 }} bg="gray.50">
