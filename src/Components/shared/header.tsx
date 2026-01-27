@@ -13,6 +13,7 @@ import {
   DrawerCloseButton,
   useDisclosure,
   VStack,
+  Link,
 } from "@chakra-ui/react";
 import { FaSearch, FaBars } from "react-icons/fa";
 import { IoMdContact } from "react-icons/io";
@@ -24,8 +25,12 @@ type HeaderProps = {
 const Header = ({ onOpenSearch }: HeaderProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const navLinks = ["Home", "About", "Service", "Contact"];
-
+ const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/About" },
+  { label: "Service", href: "/Service" },
+  { label: "Contact", href: "/Contact" },
+];
   return (
     <>
       <Box
@@ -50,20 +55,23 @@ const Header = ({ onOpenSearch }: HeaderProps) => {
           />
 
           <Text color="white" fontSize="xl" fontWeight="bold">
-            SimpleLinkPrintingPress
+            SimpleLinkPress
           </Text>
 
           <Flex gap={8} align="center" display={{ base: "none", md: "flex" }}>
             {navLinks.map((link) => (
-              <Text
-                key={link}
-                color="white"
-                cursor="pointer"
-                _hover={{ color: "pink.400" }}
-              >
-                {link}
-              </Text>
-            ))}
+  <Link
+    // as={NextLink}
+    key={link.href}
+    href={link.href}
+    color="white"
+    fontWeight="medium"
+    _hover={{ color: "pink.400", textDecoration: "none" }}
+  >
+    {link.label}
+  </Link>
+))}
+
           </Flex>
 
           <Flex align="center" gap={3}>
@@ -102,13 +110,13 @@ const Header = ({ onOpenSearch }: HeaderProps) => {
             <VStack align="start" spacing={6} mt={4}>
               {navLinks.map((link) => (
                 <Text
-                  key={link}
+                  key={link.href}
                   fontSize="lg"
                   onClick={onClose}
                   cursor="pointer"
                   w="100%"
                 >
-                  {link}
+                  {link.label}
                 </Text>
               ))}
             </VStack>

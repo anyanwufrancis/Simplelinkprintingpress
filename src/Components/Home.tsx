@@ -11,6 +11,7 @@ import {
   Grid,
   GridItem,
   Modal,
+  Link,
   ModalOverlay,
   ModalContent,
   ModalBody,
@@ -20,11 +21,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
-import {
-  // IoChevronBack,
-  // IoChevronForward,
-  IoSettingsOutline,
-} from "react-icons/io5";
+import { IoSettingsOutline } from "react-icons/io5";
 import { FiMaximize2 } from "react-icons/fi";
 import { FaLaptopCode, FaCube, FaStar } from "react-icons/fa";
 import Header from "./shared/header";
@@ -184,8 +181,6 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const nextSlide = () => setSlideIndex((prev) => (prev + 1) % slides.length);
-  const prevSlide = () =>
-    setSlideIndex((prev) => (prev - 1 + slides.length) % slides.length);
 
   useEffect(() => {
     const timer = setInterval(nextSlide, 5000);
@@ -368,9 +363,11 @@ const Home = () => {
               <Text mt={4} fontSize={{ base: "md", md: "2xl" }}>
                 {slides[slideIndex].text}
               </Text>
-              <Button mt={6} colorScheme="pink" size="lg">
-                Contact Us
-              </Button>
+              <Link href="/Contact#form">
+                <Button mt={6} colorScheme="pink" size="lg">
+                  Contact Us
+                </Button>
+              </Link>
             </Flex>
           </MotionBox>
         </AnimatePresence>
@@ -539,15 +536,12 @@ const Home = () => {
           bg="blackAlpha.400"
           style={{ backdropFilter: "blur(5px)" }}
         />
-        <Button colorScheme="pink" mt={"14em"}
-         ml={"2em"} 
-         size="lg">
+        <Button colorScheme="pink" mt={"14em"} ml={"2em"} size="lg">
           {" "}
           Contact Us{" "}
         </Button>{" "}
         <Heading
           color="white"
-
           px={{ base: 4, md: 8 }}
           fontSize={{ base: "2xl", md: "7xl" }}
           zIndex={1}
