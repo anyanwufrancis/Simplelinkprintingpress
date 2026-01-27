@@ -451,7 +451,8 @@ const Home = () => {
         </Grid>{" "}
       </Box>
       {/* PROJECTS GRID */}
-      <Heading mt="2em" textAlign="center">
+      <Heading id="projects" mt="1em"
+      mb={"1em"} color={"purple.800"} fontSize={"6xl"} textAlign="center">
         Our Projects
       </Heading>
       <Flex justify="center" gap={4} mb={6} flexWrap="wrap">
@@ -460,7 +461,15 @@ const Home = () => {
             key={cat.key}
             onClick={() => setCategory(cat.key as CategoryKey)}
             colorScheme={category === cat.key ? "pink" : "gray"}
-          >
+          // Default Navy Blue
+    bg={category === cat.key ? "pink.400" : "#1a0047"} 
+    color="white"
+    // Pink on Hover
+    _hover={{ bg: "pink.400" }}
+    // Optional: Keep it pink when active/pressed
+    _active={{ bg: "pink.500" }}
+    transition="all 0.3s ease"
+         >
             {cat.label}
           </Button>
         ))}

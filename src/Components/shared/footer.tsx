@@ -105,7 +105,7 @@ const Footer = () => {
               </Flex>
               <Flex gap="5px" align="center">
                 <IoEllipseSharp size="8px" color="green" />
-                <Link to="/#powerful-features">
+                <Link to="/service">
                   <Text cursor="pointer" color="gray.400" fontSize="lg">
                     Services
                   </Text>
@@ -113,15 +113,15 @@ const Footer = () => {
               </Flex>
               <Flex gap="5px" align="center">
                 <IoEllipseSharp size="8px" color="green" />
-                <Link to="/#header-nav">
+                <Link to="/#projects">
                   <Text cursor="pointer" color="gray.400" fontSize="lg">
-                    Product
+                    Project
                   </Text>
                 </Link>
               </Flex>
               <Flex gap="5px" align="center">
                 <IoEllipseSharp size="8px" color="green" />
-                <Link to="/#header-nav">
+                <Link to="/contact">
                   <Text cursor="pointer" color="gray.400" fontSize="lg">
                     Contact
                   </Text>

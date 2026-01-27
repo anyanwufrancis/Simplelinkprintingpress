@@ -86,14 +86,17 @@ const Header = ({ onOpenSearch }: HeaderProps) => {
               onClick={onOpenSearch}
             />
 
-            <IconButton
-              aria-label="Contact"
-              icon={<IoMdContact />}
-              variant="ghost"
-              color="white"
-              fontSize="20px"
-              _hover={{ bg: "whiteAlpha.200" }}
-            />
+            {/* /* Replace your Contact IconButton with this */ }
+<Link href="/Login">
+  <IconButton
+    aria-label="Login"
+    icon={<IoMdContact />}
+    variant="ghost"
+    color="white"
+    fontSize="20px"
+    _hover={{ bg: "whiteAlpha.200" }}
+  />
+</Link>
           </Flex>
         </Flex>
       </Box>
