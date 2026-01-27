@@ -21,11 +21,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
 import {
-  IoChevronBack,
-  IoChevronForward,
+  // IoChevronBack,
+  // IoChevronForward,
   IoSettingsOutline,
 } from "react-icons/io5";
-import { FiPrinter, FiMaximize2 } from "react-icons/fi";
+import { FiMaximize2 } from "react-icons/fi";
 import { FaLaptopCode, FaCube, FaStar } from "react-icons/fa";
 import Header from "./shared/header";
 import Footer from "./shared/footer";

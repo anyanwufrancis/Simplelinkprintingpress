@@ -50,7 +50,7 @@ const Header = ({ onOpenSearch }: HeaderProps) => {
           />
 
           <Text color="white" fontSize="xl" fontWeight="bold">
-            SimpleLinkPress
+            SimpleLinkPrintingPress
           </Text>
 
           <Flex gap={8} align="center" display={{ base: "none", md: "flex" }}>
