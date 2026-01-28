@@ -78,7 +78,7 @@ const About: React.FC = () => {
 
 
   return (
-    <Box position="relative" w="100%" overflow="hidden">
+    <Box position="relative"  w="100%" overflow="hidden">
       <Header onOpenSearch={function (): void {
         throw new Error('Function not implemented.');
       } } />
@@ -87,8 +87,9 @@ const About: React.FC = () => {
         h={{ base: "250px", md: "300px" }}
         bg="gray.800"
         overflow="hidden"
+        minH="100vh"
       >
-        <Box position="absolute" top="0" left="0" w="100%" h="100%">
+        <Box position="absolute"  top="0" left="0" w="100%" h="100%">
           <Box
             position="absolute"
             top="-20%"

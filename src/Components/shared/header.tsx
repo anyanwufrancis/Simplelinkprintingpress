@@ -25,12 +25,12 @@ type HeaderProps = {
 const Header = ({ onOpenSearch }: HeaderProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
- const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/About" },
-  { label: "Service", href: "/Service" },
-  { label: "Contact", href: "/Contact" },
-];
+  const navLinks = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/About" },
+    { label: "Service", href: "/Service" },
+    { label: "Contact", href: "/Contact" },
+  ];
   return (
     <>
       <Box
@@ -60,18 +60,17 @@ const Header = ({ onOpenSearch }: HeaderProps) => {
 
           <Flex gap={8} align="center" display={{ base: "none", md: "flex" }}>
             {navLinks.map((link) => (
-  <Link
-    // as={NextLink}
-    key={link.href}
-    href={link.href}
-    color="white"
-    fontWeight="medium"
-    _hover={{ color: "pink.400", textDecoration: "none" }}
-  >
-    {link.label}
-  </Link>
-))}
-
+              <Link
+                // as={NextLink}
+                key={link.href}
+                href={link.href}
+                color="white"
+                fontWeight="medium"
+                _hover={{ color: "pink.400", textDecoration: "none" }}
+              >
+                {link.label}
+              </Link>
+            ))}
           </Flex>
 
           <Flex align="center" gap={3}>
@@ -86,17 +85,17 @@ const Header = ({ onOpenSearch }: HeaderProps) => {
               onClick={onOpenSearch}
             />
 
-            {/* /* Replace your Contact IconButton with this */ }
-<Link href="/contact">
-  <IconButton
-    aria-label="Login"
-    icon={<IoMdContact />}
-    variant="ghost"
-    color="white"
-    fontSize="20px"
-    _hover={{ bg: "whiteAlpha.200" }}
-  />
-</Link>
+            {/* /* Replace your Contact IconButton with this */}
+            <Link href="/contact">
+              <IconButton
+                aria-label="Login"
+                icon={<IoMdContact />}
+                variant="ghost"
+                color="white"
+                fontSize="20px"
+                _hover={{ bg: "whiteAlpha.200" }}
+              />
+            </Link>
           </Flex>
         </Flex>
       </Box>
@@ -112,15 +111,16 @@ const Header = ({ onOpenSearch }: HeaderProps) => {
           <DrawerBody>
             <VStack align="start" spacing={6} mt={4}>
               {navLinks.map((link) => (
-                <Text
+                <Link
+                  // as={NextLink}
                   key={link.href}
-                  fontSize="lg"
-                  onClick={onClose}
-                  cursor="pointer"
-                  w="100%"
+                  href={link.href}
+                  color="white"
+                  fontWeight="medium"
+                  _hover={{ color: "pink.400", textDecoration: "none" }}
                 >
                   {link.label}
-                </Text>
+                </Link>
               ))}
             </VStack>
           </DrawerBody>

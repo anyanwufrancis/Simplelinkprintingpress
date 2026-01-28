@@ -329,7 +329,7 @@ const Home = () => {
       </Modal>
       {/* ================= YOUR EXISTING PAGE CONTINUES BELOW ================= */}
       {/* SLIDER */}
-      <Box position="relative" minH="70vh" overflow="hidden" pt="80px">
+      <Box position="relative" minH="100vh" overflow="hidden" pt="80px">
         <AnimatePresence mode="wait">
           <MotionBox
             key={slideIndex}
@@ -397,6 +397,7 @@ const Home = () => {
       </Box>
       {/* Features Section */}{" "}
       <Box py={{ base: 10, md: 16 }} px={{ base: 4, md: 12 }} bg="gray.50">
+     
         {" "}
         <Heading
           textAlign="center"
@@ -556,6 +557,7 @@ const Home = () => {
       <Box
         mt={"1em"}
         w="100%"
+        minH="100vh"
         h={{ base: "300px", md: "500px" }}
         position="relative"
         bgImage="url('/bgimage.jpg')"

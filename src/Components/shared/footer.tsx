@@ -23,7 +23,7 @@ const Footer = () => {
   return (
     <MotionBox >
       {/* Main Footer */}
-      <Box bg="#000" color="#fff" p={4} fontFamily="Arial, sans-serif" mt={10}>
+      <Box bg="#000" color="white" p={4} fontFamily="Arial, sans-serif" mt={10}>
         <Flex
           flexDirection={{ base: "column", md: "row" }}
           maxW="1200px"
@@ -41,7 +41,7 @@ const Footer = () => {
               mt={2}
               fontSize="lg"
               w={{ base: "19em", md: "29em" }}
-              color="gray.400"
+              // color="gray.400"
             >
               Experience the future of printing with our high-quality custom
               solutions. From personalized products to precision-driven results,
@@ -98,7 +98,7 @@ const Footer = () => {
               >
                 <IoEllipseSharp size="8px" color="green" />
                 <Link to="/about">
-                  <Text cursor="pointer" color="gray.400" fontSize="lg">
+                  <Text cursor="pointer" fontSize="lg">
                     About Us
                   </Text>
                 </Link>
@@ -106,7 +106,7 @@ const Footer = () => {
               <Flex gap="5px" align="center">
                 <IoEllipseSharp size="8px" color="green" />
                 <Link to="/service">
-                  <Text cursor="pointer" color="gray.400" fontSize="lg">
+                  <Text cursor="pointer" fontSize="lg">
                     Services
                   </Text>
                 </Link>
@@ -114,7 +114,7 @@ const Footer = () => {
               <Flex gap="5px" align="center">
                 <IoEllipseSharp size="8px" color="green" />
                 <Link to="/#projects">
-                  <Text cursor="pointer" color="gray.400" fontSize="lg">
+                  <Text cursor="pointer" fontSize="lg">
                     Project
                   </Text>
                 </Link>
@@ -122,7 +122,7 @@ const Footer = () => {
               <Flex gap="5px" align="center">
                 <IoEllipseSharp size="8px" color="green" />
                 <Link to="/contact">
-                  <Text cursor="pointer" color="gray.400" fontSize="lg">
+                  <Text cursor="pointer" fontSize="lg">
                     Contact
                   </Text>
                 </Link>
@@ -140,18 +140,18 @@ const Footer = () => {
                 <Box bg="#4CAF50" p={2} borderRadius="md" h="2.2em">
                   <Icon as={MdOutlineEmail} color="#fff" boxSize={4} />
                 </Box>
-                <Text fontSize="lg" color="gray.400">
-                  ahiaoma37@gmail.com
+                <Text fontSize="lg">
+                  simplelink@gmail.com
                 </Text>
               </HStack>
               <HStack align="center" gap={2}>
                 <Box bg="#2196F3" p={2} borderRadius="md" h="2.2em">
                   <Icon as={FaPhone} color="#fff" boxSize={4} />
                 </Box>
-                <Text fontSize="lg" color="gray.400">
+                <Text fontSize="lg">
                   +234 91 6767 8144,
                 </Text>
-                <Text fontSize="lg" color="gray.400">
+                <Text fontSize="lg">
                   +234 80 9889 8967
                 </Text>
               </HStack>

@@ -65,7 +65,8 @@ export default function Contact() {
             <Header onOpenSearch={function (): void {
                 throw new Error("Function not implemented.");
             } }/>
-            <Flex id="banner" justifyContent="center" alignItems="center" h="20rem" bg="gray.700">
+            <Flex minH="100vh"
+ id="banner" justifyContent="center" alignItems="center" h="20rem" bg="gray.700">
                 <Text fontSize="42px" color="white" fontWeight={600}>Contact</Text>
             </Flex>
 
