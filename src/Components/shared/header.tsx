@@ -1,4 +1,4 @@
-"use client";
+// Header.tsx
 
 import {
   Box,
@@ -13,24 +13,31 @@ import {
   DrawerCloseButton,
   useDisclosure,
   VStack,
-  Link,
+  Link as ChakraLink,
 } from "@chakra-ui/react";
 import { FaSearch, FaBars } from "react-icons/fa";
 import { IoMdContact } from "react-icons/io";
+import { useLocation } from "react-router-dom";
 
 type HeaderProps = {
   onOpenSearch: () => void;
 };
 
-const Header = ({ onOpenSearch }: HeaderProps) => {
+export default function Header({ onOpenSearch }: HeaderProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  // Show search only on home page
+  const isHome = currentPath === "/";
 
   const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/About" },
+    { label: "Home",    href: "/" },
+    { label: "About",   href: "/About" },
     { label: "Service", href: "/Service" },
     { label: "Contact", href: "/Contact" },
   ];
+
   return (
     <>
       <Box
@@ -58,49 +65,70 @@ const Header = ({ onOpenSearch }: HeaderProps) => {
             SimpleLinkPress
           </Text>
 
+          {/* Desktop navigation */}
           <Flex gap={8} align="center" display={{ base: "none", md: "flex" }}>
-            {navLinks.map((link) => (
-              <Link
-                // as={NextLink}
-                key={link.href}
-                href={link.href}
-                color="white"
-                fontWeight="medium"
-                _hover={{ color: "pink.400", textDecoration: "none" }}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = currentPath === link.href;
+
+              return (
+                <ChakraLink
+                  key={link.href}
+                  href={link.href}
+                  color={isActive ? "pink.400" : "white"}
+                  fontWeight={isActive ? "bold" : "medium"}
+                  textDecoration="none"
+                  _hover={{ color: "pink.400" }}
+                  position="relative"
+                  _after={
+                    isActive
+                      ? {
+                          content: '""',
+                          position: "absolute",
+                          width: "100%",
+                          height: "2px",
+                          bottom: "-6px",
+                          left: 0,
+                          bg: "pink.400",
+                          borderRadius: "full",
+                        }
+                      : {}
+                  }
+                >
+                  {link.label}
+                </ChakraLink>
+              );
+            })}
           </Flex>
 
+          {/* Right icons - search only on home */}
           <Flex align="center" gap={3}>
-            {/* 🔥 GLOBAL SEARCH BUTTON */}
-            <IconButton
-              aria-label="Global Search"
-              icon={<FaSearch />}
-              variant="ghost"
-              color="white"
-              fontSize="18px"
-              _hover={{ bg: "whiteAlpha.200" }}
-              onClick={onOpenSearch}
-            />
-
-            {/* /* Replace your Contact IconButton with this */}
-            <Link href="/contact">
+            {isHome && (
               <IconButton
-                aria-label="Login"
+                aria-label="Global Search"
+                icon={<FaSearch />}
+                variant="ghost"
+                color="white"
+                fontSize="18px"
+                _hover={{ bg: "whiteAlpha.200" }}
+                onClick={onOpenSearch}
+              />
+            )}
+
+            <ChakraLink href="/Contact">
+              <IconButton
+                aria-label="Contact"
                 icon={<IoMdContact />}
                 variant="ghost"
                 color="white"
                 fontSize="20px"
                 _hover={{ bg: "whiteAlpha.200" }}
               />
-            </Link>
+            </ChakraLink>
           </Flex>
         </Flex>
       </Box>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer */}
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent bg="#1a0047" color="white">
@@ -109,25 +137,28 @@ const Header = ({ onOpenSearch }: HeaderProps) => {
             Menu
           </DrawerHeader>
           <DrawerBody>
-            <VStack align="start" spacing={6} mt={4}>
-              {navLinks.map((link) => (
-                <Link
-                  // as={NextLink}
-                  key={link.href}
-                  href={link.href}
-                  color="white"
-                  fontWeight="medium"
-                  _hover={{ color: "pink.400", textDecoration: "none" }}
-                >
-                  {link.label}
-                </Link>
-              ))}
+            <VStack align="start" spacing={6} mt={6}>
+              {navLinks.map((link) => {
+                const isActive = currentPath === link.href;
+
+                return (
+                  <ChakraLink
+                    key={link.href}
+                    href={link.href}
+                    color={isActive ? "pink.400" : "white"}
+                    fontWeight={isActive ? "bold" : "medium"}
+                    fontSize="lg"
+                    _hover={{ color: "pink.400" }}
+                    onClick={onClose}
+                  >
+                    {link.label}
+                  </ChakraLink>
+                );
+              })}
             </VStack>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
     </>
   );
-};
-
-export default Header;
+}

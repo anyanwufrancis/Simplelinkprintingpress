@@ -54,7 +54,7 @@ export default function Contact() {
     };
 
     const info = [
-        { icon: <FaMapMarkedAlt />, title: "Address", detail: "Suite 004, Tuturu Plaza, Ado, Nasarawa", num: [] },
+      { icon: <FaMapMarkedAlt />, title: "Address", detail: "Suite 004, Tuturu Plaza, Ado, Nasarawa", num: [] },
         { icon: <FaPhone />, title: "Call Us", num: ['08098898967', '09167678144'], detail: "" },
         { icon: <FaEnvelope />, title: "Mail Us", detail: "simplelink@gmail.com", num: [] },
         { icon: <FaClock />, title: "Opening Hours", detail: "Mon - Fri: 7am-7pm", num: [] }
@@ -66,7 +66,8 @@ export default function Contact() {
                 throw new Error("Function not implemented.");
             } }/>
             <Flex minH="100vh"
- id="banner" justifyContent="center" alignItems="center" h="20rem" bg="gray.700">
+ id="banner"
+  justifyContent="center" alignItems="center" h="20rem" bg="gray.700">
                 <Text fontSize="42px" color="white" fontWeight={600}>Contact</Text>
             </Flex>
 

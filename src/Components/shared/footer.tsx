@@ -85,7 +85,7 @@ const Footer = () => {
           </Box>
 
           {/* Quick Links */}
-          <Box minW="200px" mb={{ base: 4, md: 0 }}>
+          <Box minW="100px" mb={{ base: 4, md: 0 }}>
             <Text fontWeight="bold" fontSize="2xl" mb={4}>
               Quick Links
             </Text>
@@ -131,7 +131,7 @@ const Footer = () => {
           </Box>
 
           {/* Contact Section */}
-          <Box minW="200px" mb={{ base: 4, md: 12 }}>
+          <Box minW="2   00px" mb={{ base: 4, md: 12 }}>
             <Text fontWeight="bold" fontSize="2xl" mb={4}>
               Contact
             </Text>
